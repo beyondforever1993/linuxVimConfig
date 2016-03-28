@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/genglei/.vim/bundle/grep'
+let g:netrw_dirhist_2='/home/genglei/.vim/bundle/grep/plugin'
+let g:netrw_dirhist_3='/home/genglei/work/x360/web/615_web/www/mobile'
+let g:netrw_dirhist_4='/home/genglei/work/x360/web/615_web/www/mobile/resources'
+let g:netrw_dirhist_5='/home/genglei/work/x360/web/615_web/www/mobile/resources/xml'
+let g:netrw_dirhist_6='/home/genglei/work/x360/web/615_web/www/mobile'
+let g:netrw_dirhist_7='/home/genglei/work/x360/web/615_web/www/mobile/resources'
+let g:netrw_dirhist_8='/home/genglei/work/x360/web/615_web/www/mobile/resources/xml'
