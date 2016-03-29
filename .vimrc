@@ -77,6 +77,9 @@ Plugin 'Lokaltog/vim-easymotion'
 "列对齐
 Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
+
+"markdown
+Plugin 'suan/vim-instant-markdown'
 "中英文输入法平滑切换
 "Plugin 'lilydjwg/fcitx.vim'
 "本地安装插件
@@ -548,7 +551,7 @@ nmap <Leader><Leader>s :stag<cr>
 "预览函数定义
 nmap <Leader><Leader>p :ptag<cr>
 "列出标签的所有引用
-nmap <Leader><Leader>t :tselect<cr>
+nmap <Leader><Leader>t :tjump<cr>
 "查看函数原型
 nmap <Leader><Leader>d :psearch<cr>
 
