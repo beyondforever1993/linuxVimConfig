@@ -479,7 +479,8 @@ nnoremap <Leader>sf :CtrlSF<CR>
 
 
 "Grep.vim
- nnoremap <silent> <F3> :Grep<CR>
+ "nnoremap <silent> <F3> :Grep<CR>
+ nnoremap <Leader>gr :Grep<CR>
  let Grep_Default_Options = '-rnI --exclude-dir=.svn' 
 
  "Ack.vim
@@ -545,7 +546,7 @@ map <silent> <F10> :tprevious<cr>
 "查找标签栈
 nmap <Leader><Leader>n :tags<cr>
 "跳到最新的标签 tfrist
-nmap <Leader><Leader>f :tag<cr>
+"nmap <Leader><Leader>f :tag<cr>
 "在分隔窗口打开
 nmap <Leader><Leader>s :stag<cr>
 "预览函数定义
@@ -612,3 +613,8 @@ endif
 
 nmap <C-N> :cnext<cr>
 nmap <C-P> :cprevious<cr>
+
+"commandT  enconding issue
+let g:CommandTEncoding = 'UTF-8'
+nnoremap <silent> <leader>mr :CommandTMRU<CR>
+
