@@ -618,3 +618,8 @@ nmap <C-P> :cprevious<cr>
 let g:CommandTEncoding = 'UTF-8'
 nnoremap <silent> <leader>mr :CommandTMRU<CR>
 
+" use 256 colors in terminal
+if !has("gui_running")
+    set t_Co=256
+    set term=screen-256color
+endif
