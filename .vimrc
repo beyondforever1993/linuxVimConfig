@@ -594,8 +594,8 @@ if has("gui_running")
 endif
 
 
-nmap <C-N> :cnext<cr>
-nmap <C-P> :cprevious<cr>
+nmap <C-D> :cnext<cr>
+nmap <C-U> :cprevious<cr>
 
 "commandT  enconding issue
 let g:CommandTEncoding = 'UTF-8'
@@ -637,8 +637,11 @@ nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 "multiple cursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-D>'
-let g:multi_cursor_prev_key='<C-U>'
-let g:multi_cursor_skip_key='<C-X>'
-let g:multi_cursor_quit_key='<Esc>'
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_next_key='<C-D>'
+"let g:multi_cursor_prev_key='<C-U>'
+"let g:multi_cursor_skip_key='<C-X>'
+"let g:multi_cursor_quit_key='<Esc>'
+if has("gui_running")
+    set selection=inclusive
+endif
