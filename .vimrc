@@ -46,7 +46,7 @@ Plugin 'dyng/ctrlsf.vim'
 Plugin 'scrooloose/nerdcommenter'
 
 "多文档编辑
-Plugin 'fholgado/minibufexpl.vim'
+"Plugin 'fholgado/minibufexpl.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -92,9 +92,9 @@ Plugin 'suan/vim-instant-markdown'
 "中英文输入法平滑切换
 "Plugin 'lilydjwg/fcitx.vim'
 "本地安装插件
-Plugin 'file:///home/genglei/.vim/bundle/indexer', {'pinned': 1}
-Plugin 'file:///home/genglei/.vim/bundle/dfrank_util',{'pinned': 1}
-Plugin 'file:///home/genglei/.vim/bundle/vimprj',{'pinned': 1}
+"Plugin 'file:///home/genglei/.vim/bundle/indexer', {'pinned': 1}
+"Plugin 'file:///home/genglei/.vim/bundle/dfrank_util',{'pinned': 1}
+"Plugin 'file:///home/genglei/.vim/bundle/vimprj',{'pinned': 1}
 Plugin 'file:///home/genglei/.vim/bundle/gundo',{'pinned': 1}
 Plugin 'file:///home/genglei/.vim/bundle/SingleCompiler',{'pinned': 1}
 "Plugin 'file:///home/genglei/.vim/bundle/CSApprox',{'pinned': 1}
@@ -620,7 +620,7 @@ if executable("ag")
     " Use Ag over Grep 
     set grepprg=ag\ --nogroup\ --nocolor 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' 
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
     " ag is fast enough that CtrlP doesn't need to cache 
     let g:ctrlp_use_caching = 0 
 endif
