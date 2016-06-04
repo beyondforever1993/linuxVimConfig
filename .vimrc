@@ -17,9 +17,17 @@ Plugin 'rdnetto/YCM-Generator'
 Plugin 'scrooloose/nerdtree'
 
 Plugin 'mattn/emmet-vim'
-"Plugin 'google/vim-colorscheme-primary'
+Plugin 'google/vim-colorscheme-primary'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-scripts/tabula.vim'
+Plugin 'tomasr/molokai'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'hukl/Smyck-Color-Scheme'
 
+
+"multiple cursor
+Plugin 'terryma/vim-multiple-cursors'
 " 可视化代码缩进可视化插件
 "Plugin 'nathanaelkane/vim-indent-guides'
 
@@ -47,6 +55,7 @@ Plugin 'fholgado/minibufexpl.vim'
 "Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'wincent/command-t'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 "主题
 "Plugin 'tomasr/molokai'
@@ -448,32 +457,6 @@ nmap <Leader>ch :A<CR>
 " 子窗口中显示 *.cpp 或 *.h
 nmap <Leader>sch :AS<CR>
 
-"vim-signature
-let g:SignatureMap = {
-        \ 'Leader'             :  "m",
-        \ 'PlaceNextMark'      :  "m,",
-        \ 'ToggleMarkAtLine'   :  "m.",
-        \ 'PurgeMarksAtLine'   :  "m-",
-        \ 'DeleteMark'         :  "dm",
-        \ 'PurgeMarks'         :  "mda",
-        \ 'PurgeMarkers'       :  "m<BS>",
-        \ 'GotoNextLineAlpha'  :  "']",
-        \ 'GotoPrevLineAlpha'  :  "'[",
-        \ 'GotoNextSpotAlpha'  :  "`]",
-        \ 'GotoPrevSpotAlpha'  :  "`[",
-        \ 'GotoNextLineByPos'  :  "]'",
-        \ 'GotoPrevLineByPos'  :  "['",
-        \ 'GotoNextSpotByPos'  :  "mn",
-        \ 'GotoPrevSpotByPos'  :  "mp",
-        \ 'GotoNextMarker'     :  "[+",
-        \ 'GotoPrevMarker'     :  "[-",
-        \ 'GotoNextMarkerAny'  :  "]=",
-        \ 'GotoPrevMarkerAny'  :  "[=",
-        \ 'ListLocalMarks'     :  "ms",
-        \ 'ListLocalMarkers'   :  "m?"
-        \ }
-
-
 "ctrlsf.vim
 nnoremap <Leader>sf :CtrlSF<CR>
 
@@ -481,7 +464,7 @@ nnoremap <Leader>sf :CtrlSF<CR>
 "Grep.vim
  "nnoremap <silent> <F3> :Grep<CR>
  nnoremap <Leader>gr :Grep<CR>
- let Grep_Default_Options = '-rnI --exclude-dir=.svn' 
+ let Grep_Default_Options = '-rnI --exclude-dir=.svn --exclude=cscope.*' 
 
  "Ack.vim
 nnoremap <Leader>ac :Ack!<CR>
@@ -602,7 +585,7 @@ function! Mydict()
 endfunction
 nmap <Leader>f :call Mydict()<CR>
 
-set path+=/home/genglei/work/x360/615_20151221/stage2/**,/usr/include/**
+"set path+=/usr/include/**
 
 
 "mark.vim
@@ -623,3 +606,39 @@ if !has("gui_running")
     set t_Co=256
     set term=screen-256color
 endif
+
+"Ctrlp
+nnoremap <silent> <leader>ct :CtrlP .<CR>
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
+"let g:ctrlp_prompt_mappings = { 'PrtHistory(-1)': ['<c-p>'] }
+"let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
+"let g:ctrlp_max_history = 0
+let g:ctrlp_map = '<F12>'
+let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
+if executable("ag") 
+    let g:ackprg = 'ag --nogroup --nocolor --column' 
+    " Use Ag over Grep 
+    set grepprg=ag\ --nogroup\ --nocolor 
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""' 
+    " ag is fast enough that CtrlP doesn't need to cache 
+    let g:ctrlp_use_caching = 0 
+endif
+
+"cscope mapping keys
+nmap <C-m>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-m>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-m>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-m>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-m>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-m>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-m>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+
+
+"multiple cursors
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-D>'
+let g:multi_cursor_prev_key='<C-U>'
+let g:multi_cursor_skip_key='<C-X>'
+let g:multi_cursor_quit_key='<Esc>'
