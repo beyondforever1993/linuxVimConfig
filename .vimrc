@@ -56,6 +56,7 @@ Plugin 'scrooloose/nerdcommenter'
 " Git plugin not hosted on GitHub
 Plugin 'wincent/command-t'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
 
 "主题
 "Plugin 'tomasr/molokai'
@@ -608,7 +609,7 @@ if !has("gui_running")
 endif
 
 "Ctrlp
-nnoremap <silent> <leader>ct :CtrlP .<CR>
+nnoremap <silent> <leader>cc :CtrlP .<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(-1)': ['<c-p>'] }
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
@@ -645,3 +646,8 @@ nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 if has("gui_running")
     set selection=inclusive
 endif
+
+"fzf
+nmap <leader>zz :FZF . <CR>
+
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
