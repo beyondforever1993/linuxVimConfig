@@ -10,89 +10,78 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
-
-"文件目录浏览
+Plugin 'myusuf3/numbers.vim'
+"file explorer
 Plugin 'scrooloose/nerdtree'
 
-Plugin 'mattn/emmet-vim'
+"colorschemes
 Plugin 'google/vim-colorscheme-primary'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'vim-scripts/tabula.vim'
 Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-scripts/tabula.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'hukl/Smyck-Color-Scheme'
+Plugin 'flazz/vim-colorschemes'
+
+Plugin 'mattn/emmet-vim'
 
 
 "multiple cursor
 Plugin 'terryma/vim-multiple-cursors'
-" 可视化代码缩进可视化插件
+"Visualization of code indentation
 "Plugin 'nathanaelkane/vim-indent-guides'
 
-"接口h和实现c的切换
+"Switch between .c and .h
 Plugin 'vim-scripts/a.vim'
 
-"代码收藏
+"mark sign
 Plugin 'kshenoy/vim-signature'
 
-"内容查找
+"Find the file contents
 Plugin 'yegappan/grep'
 Plugin 'mileszs/ack.vim'
 Plugin 'dyng/ctrlsf.vim'
 
-"代码注释
+"Code comments
 Plugin 'scrooloose/nerdcommenter'
 
-"多文档编辑
 "Plugin 'fholgado/minibufexpl.vim'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
+
 Plugin 'wincent/command-t'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'junegunn/fzf'
 
-"主题
-"Plugin 'tomasr/molokai'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-"快速配对对结符
-Plugin 'gcmt/wildfire.vim'
-
-Plugin 'powerline/fonts'
-Plugin 'bling/vim-airline'
-Plugin 'mhinz/vim-startify'
+"Programming
 Plugin 'majutsushi/tagbar'
-Plugin 'itchyny/calendar.vim'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'rdnetto/YCM-Generator'
+Plugin 'scrooloose/syntastic'
 Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
-"语法检查
-Plugin 'scrooloose/syntastic'
-"快速移动
+
+Plugin 'gcmt/wildfire.vim'
+
+"Status bar
+Plugin 'powerline/fonts'
+Plugin 'bling/vim-airline'
+
+Plugin 'mhinz/vim-startify'
+Plugin 'itchyny/calendar.vim'
+
 Plugin 'Lokaltog/vim-easymotion'
 
-"列对齐
+"Column alignment
 Plugin 'junegunn/vim-easy-align'
 Plugin 'godlygeek/tabular'
 
 "markdown
 Plugin 'suan/vim-instant-markdown'
-"中英文输入法平滑切换
+"
 "Plugin 'lilydjwg/fcitx.vim'
-"本地安装插件
+
+"Local plugins
 "Plugin 'file:///home/genglei/.vim/bundle/indexer', {'pinned': 1}
 "Plugin 'file:///home/genglei/.vim/bundle/dfrank_util',{'pinned': 1}
 "Plugin 'file:///home/genglei/.vim/bundle/vimprj',{'pinned': 1}
@@ -215,17 +204,15 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-" 定义快捷键的前缀，即<Leader>
+"Shortcuts prefix <Leader>
 let mapleader=";"
 
-" 开启文件类型侦测
+"Open filetype detection
 filetype on
-" " 根据侦测到的不同类型加载对应的插件
 filetype plugin on
 
-" 启用:Man命令查看各类man信息
+"man cmd
 source $VIMRUNTIME/ftplugin/man.vim
-" 定义:Man命令查看各类man信息的快捷键
 nmap <Leader>man :Man 3 <cword><CR>
 nmap <Leader>man2 :Man 2 <cword><CR>
 
@@ -307,7 +294,7 @@ set nocompatible
 let Tlist_Show_One_File = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_Right_Window = 0
-nmap <silent> <leader>tt :TlistToggle<cr>
+"nmap <silent> <leader>tt :TlistToggle<cr>
 
 
 
@@ -409,7 +396,7 @@ nmap <silent> <leader>nn :NERDTreeToggle<cr>
 "set ttimeoutlen=50
 
 "TagBar
-nmap <silent> <leader>tb :TagbarToggle<cr>
+nmap <silent> <leader>tt :TagbarToggle<cr>
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
 let tagbar_left=1 
 
@@ -485,36 +472,6 @@ map <silent> <F8> :MBEbp<cr>
 let g:indexer_ctagsCommandLineOptions="--c-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+fkstliaSn --extra=+f --language-force=c"
 "let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
 
-" 替换函数。参数说明：
-" confirm：是否替换前逐一确认
-" wholeword：是否整词匹配
-" replace：被替换字符串
-function! Replace(confirm, wholeword, replace)
-    wa
-    let flag = ''
-    if a:confirm
-        let flag .= 'gec'
-    else
-        let flag .= 'ge'
-    endif
-    let search = ''
-    if a:wholeword
-        let search .= '\<' . escape(expand('<cword>'), '/\.*$^~[') . '\>'
-    else
-        let search .= expand('<cword>')
-    endif
-    let replace = escape(a:replace, '/\&~')
-    execute 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
-endfunction
-" 不确认、非整词
-nnoremap <Leader>R :call Replace(0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
-" 不确认、整词
-nnoremap <Leader>rw :call Replace(0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
-" 确认、非整词
-nnoremap <Leader>rc :call Replace(1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
-" 确认、整词
-nnoremap <Leader>rcw :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
-nnoremap <Leader>rwc :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
 
 " ctags 
 " 正向遍历同名标签
@@ -540,7 +497,7 @@ nmap <Leader><Leader>t :tjump<cr>
 "查看函数原型
 nmap <Leader><Leader>d :psearch<cr>
 
-"syntastic 错误提示符号
+"syntastic 
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 
@@ -572,7 +529,7 @@ nnoremap <Leader>sc :SCCompile<cr>
 nnoremap <Leader>sr :SCCompileRun<cr>
 let g:SingleCompile_showquickfixiferror = 1
 
-"字典查询
+"Dictionary
 function! Mydict()
     let expl=system('sdcv -n ' .
                 \  expand("<cword>"))
@@ -609,7 +566,7 @@ if !has("gui_running")
 endif
 
 "Ctrlp
-nnoremap <silent> <leader>cc :CtrlP .<CR>
+nnoremap <silent> <leader>ct :CtrlP .<CR>
 let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(-1)': ['<c-p>'] }
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
@@ -634,7 +591,7 @@ nmap <C-m>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <C-m>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
 nmap <C-m>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
 nmap <C-m>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-m>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-m>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
