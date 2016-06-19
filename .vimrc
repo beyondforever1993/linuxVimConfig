@@ -70,8 +70,8 @@ if has("unix")
     Plugin 'Valloric/YouCompleteMe'
     "Plugin 'rdnetto/YCM-Generator'
     Plugin 'scrooloose/syntastic'
+    Plugin 'SirVer/ultisnips'
 endif
-Plugin 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
 
@@ -685,15 +685,15 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
 "let g:ctrlp_max_history = 0
 let g:ctrlp_map = '<F12>'
 let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
-if executable("ag") 
-    let g:ackprg = 'ag --nogroup --nocolor --column' 
-    " Use Ag over Grep 
-    set grepprg=ag\ --nogroup\ --nocolor 
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
-    " ag is fast enough that CtrlP doesn't need to cache 
-    let g:ctrlp_use_caching = 1 
-    if has("unix")
+if has("unix")
+    if executable("ag") 
+        let g:ackprg = 'ag --nogroup --nocolor --column' 
+        " Use Ag over Grep 
+        set grepprg=ag\ --nogroup\ --nocolor 
+        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
+        " ag is fast enough that CtrlP doesn't need to cache 
+        let g:ctrlp_use_caching = 1 
         let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
     endif
 endif
@@ -748,7 +748,11 @@ function! Replace(confirm, wholeword, replace)
         let search .= expand('<cword>')
     endif
     let replace = escape(a:replace, '/\&~')
-    execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
+    if has("unix")
+        execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
+    elseif has("win32") || has("win64")
+        execute 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+    endif
 endfunction
 "No confirm, no whole word
 map <C-x>r :call Replace(0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
