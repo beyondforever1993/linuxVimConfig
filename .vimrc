@@ -751,7 +751,8 @@ function! Replace(confirm, wholeword, replace)
     if has("unix")
         execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
     elseif has("win32") || has("win64")
-        execute 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+        "Has some thing wrong, Ctrl-C and Esc replace string with null string.
+        execute 'args ' . bufname('%') . '|' . 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
     endif
 endfunction
 "No confirm, no whole word
