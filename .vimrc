@@ -56,6 +56,7 @@ Plugin 'vim-scripts/a.vim'
 
 "mark sign
 Plugin 'kshenoy/vim-signature'
+"Plugin 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
 
 "Find the file contents
 Plugin 'yegappan/grep'
@@ -68,7 +69,7 @@ Plugin 'nelstrom/vim-qargs'
 Plugin 'scrooloose/nerdcommenter'
 
 if has("win32") || has("win64")
-    Plugin 'fholgado/minibufexpl.vim'
+    "Plugin 'fholgado/minibufexpl.vim'
 endif
 
 if has("unix")
@@ -845,8 +846,8 @@ map <C-x>g :call HighighlightColumn(1)<CR>
 map <C-x>G :call HighighlightColumn(0)<CR>
 
 "Remap s keyword for myself used.
-map s :registers<CR>
-map S :display<CR>
+"map s :registers<CR>
+"map S :display<CR>
 
 
 map gz :display<CR>
@@ -863,3 +864,28 @@ nmap gl :nohlsearch<CR>
 "source .vimrc
 nmap gx :so ~/.vimrc<CR>
 
+nmap <unique> gc :marks<CR>
+"vim-signature
+let g:SignatureMap = {
+            \ 'Leader'             :  "m",
+            \ 'PlaceNextMark'      :  "m,",
+            \ 'ToggleMarkAtLine'   :  "m.",
+            \ 'PurgeMarksAtLine'   :  "m-",
+            \ 'DeleteMark'         :  "dm",
+            \ 'PurgeMarks'         :  "m<Space>",
+            \ 'PurgeMarkers'       :  "m<BS>",
+            \ 'GotoNextLineAlpha'  :  "']",
+            \ 'GotoPrevLineAlpha'  :  "'[",
+            \ 'GotoNextSpotAlpha'  :  "sn",
+            \ 'GotoPrevSpotAlpha'  :  "sm",
+            \ 'GotoNextLineByPos'  :  "]'",
+            \ 'GotoPrevLineByPos'  :  "['",
+            \ 'GotoNextSpotByPos'  :  "sj",
+            \ 'GotoPrevSpotByPos'  :  "sk",
+            \ 'GotoNextMarker'     :  "ss",
+            \ 'GotoPrevMarker'     :  "SS",
+            \ 'GotoNextMarkerAny'  :  "sf",
+            \ 'GotoPrevMarkerAny'  :  "sb",
+            \ 'ListLocalMarks'     :  "m/",
+            \ 'ListLocalMarkers'   :  "m?"
+            \ }
