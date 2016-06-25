@@ -76,6 +76,9 @@ if has("unix")
     Plugin 'junegunn/fzf'
 endif
 Plugin 'ctrlpvim/ctrlp.vim'
+if has('python') || has('python3')
+    Plugin 'FelikZ/ctrlp-py-matcher'
+endif
 
 "Programming
 Plugin 'majutsushi/tagbar'
@@ -747,6 +750,9 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
 "let g:ctrlp_max_history = 0
 let g:ctrlp_map = '<F12>'
+if has('python') || has('python3')
+    let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+endif
 let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
 if has("unix")
     if executable("ag") 
