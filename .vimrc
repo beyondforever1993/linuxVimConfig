@@ -270,16 +270,16 @@ vnoremap <Leader>y "+y
 nmap <Leader>p "+p
 "插入和命令行模式映射粘贴快捷键
 map! <C-v> <C-R>+
-map <C-x>0 "0y
-map <C-x>1 "1y
-map <C-x>2 "2y
-map <C-x>3 "3y
-map <C-x>4 "4y
-map <C-x>5 "5y
-map <C-x>6 "6y
-map <C-x>7 "7y
-map <C-x>8 "8y
-map <C-x>9 "9y
+"map <C-x>0 "0y
+"map <C-x>1 "1y
+"map <C-x>2 "2y
+"map <C-x>3 "3y
+"map <C-x>4 "4y
+"map <C-x>5 "5y
+"map <C-x>6 "6y
+"map <C-x>7 "7y
+"map <C-x>8 "8y
+"map <C-x>9 "9y
 map <C-x>" ""y
 map <C-x>+ "+y
 map <C-x>y "+y
@@ -342,6 +342,7 @@ nmap <Leader>wv <C-W>v
 nmap <Leader>wt <C-W>T
 nmap <Leader>wo <C-W>o
 nmap <Leader>wf <C-W>f
+nmap <Leader>w_ <C-W>_
 
 nmap <Leader>dd :pwd<CR>
 
@@ -358,6 +359,59 @@ if has("gui_running")
     set guioptions-=T
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"mark-2.8.5
+"Install :so %
+"testtermcolor :runtime syntax/colortest.vim
+"MarkPalette extended
+function! SourceMarkHighlight()
+    if !has('gui_running')
+        hi MarkWord1  ctermbg=Darkred      ctermfg=Black
+        hi MarkWord2  ctermbg=Darkgreen    ctermfg=Black
+        hi MarkWord3  ctermbg=Brown        ctermfg=Black
+        hi MarkWord4  ctermbg=Darkblue     ctermfg=Black
+        hi MarkWord5  ctermbg=Darkmagenta  ctermfg=Black
+        hi MarkWord6  ctermbg=Darkcyan     ctermfg=Black
+        hi MarkWord7  ctermbg=Cyan         ctermfg=Black
+        hi MarkWord8  ctermbg=Green        ctermfg=Black
+        hi MarkWord9  ctermbg=Yellow       ctermfg=Black
+        hi MarkWord10 ctermbg=Red          ctermfg=Black
+        hi MarkWord11 ctermbg=Magenta      ctermfg=Black
+        hi MarkWord12 ctermbg=Blue         ctermfg=Black
+        hi MarkWord13 ctermbg=Darkyellow   ctermfg=Black
+        "hi MarkWord14 ctermbg=lightred     ctermfg=Black
+        "hi MarkWord15 ctermbg=Lightgreen   ctermfg=Black
+        "hi MarkWord16 ctermbg=Lightblue    ctermfg=Black
+        "hi MarkWord17 ctermbg=Lightmagenta ctermfg=Black
+        "hi MarkWord18 ctermbg=Lightcyan    ctermfg=Black
+    endif
+
+    if has("gui_running")
+        let g:mwDefaultHighlightingPalette = 'extended'
+    endif
+endfunction
+nmap <unique> <C-m>n :MarkClear<CR>
+nmap <unique> <C-m>m :Marks<CR>
+nmap <unique> <C-m>1 <Plug>MarkSearchGroup1Next
+nmap <unique> <C-x>1 <Plug>MarkSearchGroup1Prev
+nmap <unique> <C-m>2 <Plug>MarkSearchGroup2Next
+nmap <unique> <C-x>2 <Plug>MarkSearchGroup2Prev
+nmap <unique> <C-m>3 <Plug>MarkSearchGroup3Next
+nmap <unique> <C-x>3 <Plug>MarkSearchGroup3Prev
+nmap <unique> <C-m>4 <Plug>MarkSearchGroup4Next
+nmap <unique> <C-x>4 <Plug>MarkSearchGroup4Prev
+nmap <unique> <C-m>5 <Plug>MarkSearchGroup5Next
+nmap <unique> <C-x>5 <Plug>MarkSearchGroup5Prev
+nmap <unique> <C-m>6 <Plug>MarkSearchGroup6Next
+nmap <unique> <C-x>6 <Plug>MarkSearchGroup6Prev
+nmap <unique> <C-m>7 <Plug>MarkSearchGroup7Next
+nmap <unique> <C-x>7 <Plug>MarkSearchGroup7Prev
+nmap <unique> <C-m>8 <Plug>MarkSearchGroup8Next
+nmap <unique> <C-x>8 <Plug>MarkSearchGroup8Prev
+nmap <unique> <C-m>9 <Plug>MarkSearchGroup9Next
+nmap <unique> <C-x>9 <Plug>MarkSearchGroup9Prev
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 if has("unix")
     " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
     fun! ToggleFullscreen()
@@ -368,6 +422,7 @@ if has("unix")
     " 启动 vim 时自动全屏
     "autocmd VimEnter * call ToggleFullscreen()
     autocmd ColorScheme * so ~/.vim/plugin/mark.vim
+    autocmd ColorScheme * :call SourceMarkHighlight()
 elseif has("win32") || has("win64")
     autocmd ColorScheme * so $HOME/vimfiles/plugin/mark.vim
 endif
@@ -387,7 +442,7 @@ if has("gui_running")
     colorscheme molokai 
 else
     set background=dark
-    colorscheme devbox-dark-256 
+    colorscheme desert256v2
 endif
 
 
@@ -669,11 +724,6 @@ if has("unix")
 endif
 
 
-"mark.vim
-if has("gui_running")
-    let g:mwDefaultHighlightingPalette = 'extended'
-endif
-
 
 "nmap <C-N> :cnext<cr>
 "nmap <C-P> :cprevious<cr>
@@ -776,3 +826,34 @@ map <C-x>R :call Replace(1, 0, input('Replace '.expand('<cword>').' with: '))<CR
 map <C-x>s :call Replace(0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
 "Confirm, whole word
 map <C-x>S :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+
+
+function! HighighlightColumn(flag)
+    if a:flag
+        execute 'set colorcolumn+=' . col('.')
+    else
+        execute 'set colorcolumn='
+    endif
+endfunction
+map <C-x>g :call HighighlightColumn(1)<CR>
+map <C-x>G :call HighighlightColumn(0)<CR>
+
+"Remap s keyword for myself used.
+map s :registers<CR>
+map S :display<CR>
+
+
+map gz :display<CR>
+"Align
+vmap g<Space> :'<,'>EasyAlign\<CR>
+vmap g1 :'<,'>EasyAlign2\<CR>
+vmap g= :'<,'>EasyAlign=<CR>
+vmap g2 :'<,'>EasyAlign2=<CR>
+vmap g3 :'<,'>EasyAlign\<CR> gv :'<,'>EasyAlign=<CR>
+"sudo write
+nmap gy :w !sudo tee %<CR>
+"Remove highlighting of search matches
+nmap gl :nohlsearch<CR>
+"source .vimrc
+nmap gx :so ~/.vimrc<CR>
+
