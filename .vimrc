@@ -580,14 +580,33 @@ autocmd FileType html,css EmmetInstall
 
 
 "language
-"set fileencodings=utf-8,gb2312,gbk,gb18030 
-"set termencoding=utf-8  
-"set fileformats=unix  
-"set encoding=prc
-set fencs=utf-8,GB18030,ucs-bom,default,latin1
-if has("gui_running")
-    set guifont=YaHei\ Consolas\ Hybrid\ 11.5
+set fileencodings=utf-8,chinese,gb2312,gbk,gb18030 
+if !has('gui_running')
+    set termencoding=utf-8  
 endif
+"auto detect fileformats
+"if has('unix')
+"    set fileformats=unix  
+"elseif has('win32') || has('win64')
+"    set fileformats=dos
+"endif
+set encoding=utf-8
+if has('win32') || has('win64')
+    set fileencoding=chinese
+elseif has('unix')
+    set fileencoding=utf-8
+endif
+set fencs=utf-8,gbk,GB18030,ucs-bom,default,latin1
+if has("gui_running")
+    if has('unix')
+        set guifont=YaHei\ Consolas\ Hybrid\ 11.5
+    elseif has('win32') || has('win64')
+        set guifont=YaHei_Consolas_Hybrid:h11.5
+    endif
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+endif
+language messages zh_CN.utf-8
 
 
 "可视化代码缩进关联
@@ -865,6 +884,8 @@ nmap gl :nohlsearch<CR>
 nmap gx :so ~/.vimrc<CR>
 
 nmap <unique> gc :marks<CR>
+nmap <unique> s :marks<CR>
+nmap <unique> S :marks<CR>
 "vim-signature
 let g:SignatureMap = {
             \ 'Leader'             :  "m",
