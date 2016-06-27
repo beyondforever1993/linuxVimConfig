@@ -383,11 +383,11 @@ function! SourceMarkHighlight()
         hi MarkWord11 ctermbg=Magenta      ctermfg=Black
         hi MarkWord12 ctermbg=Blue         ctermfg=Black
         hi MarkWord13 ctermbg=Darkyellow   ctermfg=Black
-        "hi MarkWord14 ctermbg=lightred     ctermfg=Black
-        "hi MarkWord15 ctermbg=Lightgreen   ctermfg=Black
-        "hi MarkWord16 ctermbg=Lightblue    ctermfg=Black
-        "hi MarkWord17 ctermbg=Lightmagenta ctermfg=Black
-        "hi MarkWord18 ctermbg=Lightcyan    ctermfg=Black
+        hi MarkWord14 ctermbg=lightred     ctermfg=Black
+        hi MarkWord15 ctermbg=Lightgreen   ctermfg=Black
+        hi MarkWord16 ctermbg=Lightblue    ctermfg=Black
+        hi MarkWord17 ctermbg=Lightmagenta ctermfg=Black
+        hi MarkWord18 ctermbg=Lightcyan    ctermfg=Black
     endif
 
     if has("gui_running")
@@ -797,6 +797,24 @@ nmap <C-m>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-m>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-m>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+
+nmap <C-\>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>i :scs find i <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+
+nmap <C-\><C-\>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\><C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\><C-\>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\><C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\><C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\><C-\>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\><C-\>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
+nmap <C-\><C-\>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
 "multiple cursors
