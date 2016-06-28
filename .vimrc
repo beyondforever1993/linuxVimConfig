@@ -120,6 +120,8 @@ if has("unix")
     "Plugin 'lilydjwg/fcitx.vim'
 endif
 
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 if has("unix")
     "Local plugins
     "Plugin 'file:///home/genglei/.vim/bundle/indexer', {'pinned': 1}
@@ -775,15 +777,15 @@ if has('python') || has('python3')
     let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
 endif
 let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
-if has("unix")
-    if executable("ag") 
-        let g:ackprg = 'ag --nogroup --nocolor --column' 
-        " Use Ag over Grep 
-        set grepprg=ag\ --nogroup\ --nocolor 
-        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
-        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
-        " ag is fast enough that CtrlP doesn't need to cache 
-        let g:ctrlp_use_caching = 1 
+if executable("ag") 
+    let g:ackprg = 'ag --nogroup --nocolor --column' 
+    " Use Ag over Grep 
+    set grepprg=ag\ --nogroup\ --nocolor 
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
+    " ag is fast enough that CtrlP doesn't need to cache 
+    let g:ctrlp_use_caching = 1 
+    if has("unix")
         let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
     endif
 endif
