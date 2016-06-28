@@ -127,6 +127,7 @@ if has("unix")
     "Plugin 'file:///home/genglei/.vim/bundle/vimprj',{'pinned': 1}
     Plugin 'file:///home/genglei/.vim/bundle/gundo',{'pinned': 1}
     Plugin 'file:///home/genglei/.vim/bundle/SingleCompiler',{'pinned': 1}
+    Plugin 'file:///home/genglei/.vim/bundle/vcscommand-1.99.47',{'pinned': 1}
     "Plugin 'file:///home/genglei/.vim/bundle/CSApprox',{'pinned': 1}
     " All of your Plugins must be added before the following line
 endif
@@ -285,8 +286,8 @@ map! <C-v> <C-R>+
 "map <C-x>8 "8y
 "map <C-x>9 "9y
 map <C-x>" ""y
-map <C-x>+ "+y
-map <C-x>y "+y
+"map <C-x>+ "+y
+"map <C-x>y "+y
 map <C-x>x "+y
 map <C-x>a "ay
 map <C-x>A "Ay
@@ -312,8 +313,8 @@ map <C-n>7 "7p
 map <C-n>8 "8p
 map <C-n>9 "9p
 map <C-n>" ""p
-map <C-n>+ "+p
-map <C-n>p "+p
+"map <C-n>+ "+p
+"map <C-n>p "+p
 map <C-n>n "+p
 map <C-n>a "ap
 map <C-n>A "Ap
@@ -816,6 +817,10 @@ nmap <C-\><C-\>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-\><C-\>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-\><C-\>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
+nmap <C-m>q :set cscopequickfix=s-,c-,d-,i-,t-,e-<CR>
+nmap <C-m>Q :set cscopequickfix=<CR>
+nmap <C-m>a :args<CR>
+
 
 "multiple cursors
 let g:multi_cursor_use_default_mapping=0
@@ -837,10 +842,11 @@ endif
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
 "Replace function Parameter Description：
-"confirm：Confirm whether to replace one by one before
-"wholeword：whole-word match
-"replace：replace string
-function! Replace(confirm, wholeword, replace)
+"confirm:   Confirm whether to replace one by one before
+"wholeword: whole-word match
+"replace:   replace string
+"projectrange:     project range or only current file
+function! Replace(projectrange, confirm, wholeword, replace)
     wa
     let flag = ''
     if a:confirm
@@ -855,22 +861,70 @@ function! Replace(confirm, wholeword, replace)
         let search .= expand('<cword>')
     endif
     let replace = escape(a:replace, '/\&~')
-    if has("unix")
-        execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
-    elseif has("win32") || has("win64")
-        "Has some thing wrong, Ctrl-C and Esc replace string with null string.
-        execute 'args ' . bufname('%') . '|' . 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+
+    if a:projectrange
+        execute 'Qargs | argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+    else
+        if has("unix")
+            execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
+        elseif has("win32") || has("win64")
+            "Has some thing wrong, Ctrl-C and Esc replace string with null string.
+            execute 'args ' . bufname('%') . '|' . 'argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+        endif
     endif
 endfunction
 "No confirm, no whole word
-map <C-x>r :call Replace(0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+nmap <unique> <C-x>r :call Replace(0, 0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
 "Confirm, no whole word
-map <C-x>R :call Replace(1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+nmap <unique> <C-x>R :call Replace(0, 1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
 "No confirm, whole word
-map <C-x>s :call Replace(0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+nmap <unique> <C-x>s :call Replace(0, 0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
 "Confirm, whole word
-map <C-x>S :call Replace(1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+nmap <unique> <C-x>S :call Replace(0, 1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+"No confirm, whole word, project range
+nmap <unique> <C-x>m :call Replace(1, 0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+"Confirm, whole word, project range
+nmap <unique> <C-x>M :call Replace(1, 1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+"No confirm, no whole word, project range
+nmap <unique> <C-x>n :call Replace(1, 0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+"Confirm, no whole word, project range
+nmap <unique> <C-x>N :call Replace(1, 1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
 
+
+function! SearchStringFromCurrentFile(ignorecase, context)
+    if a:context
+        execute 'CtrlSF ' . expand('<cword>')  . ' ' .expand('%')
+    else
+        execute 'Ag ' . expand('<cword>') . ' ' . expand('%')
+    endif
+endfunction
+nmap <unique> s :call SearchStringFromCurrentFile(0, 0)<CR>
+nmap <unique> S :call SearchStringFromCurrentFile(0, 1)<CR>
+
+"search string in visual mode
+function! SearchStringFromCurrentFileInVisualMode(ignorecase, context)
+    let search = ''
+    let search .= '"' . getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1] . '"'
+    if a:context
+        execute 'CtrlSF ' . search . ' ' .expand('%')
+    else
+        execute 'Ag ' . search . ' ' . expand('%')
+    endif
+endfunction
+vmap <unique> <C-n>v :call SearchStringFromCurrentFileInVisualMode(0, 0)<CR>
+vmap <unique> <C-n>V :call SearchStringFromCurrentFileInVisualMode(0, 1)<CR>
+
+"search string with input
+function! SearchStringFromCurrentFileWithInput(ignorecase, context, searchstring)
+    let searchstring = escape(a:searchstring, '/\&~')
+    if a:context
+        execute 'CtrlSF ' . searchstring  . ' ' .expand('%')
+    else
+        execute 'Ag ' . searchstring . ' ' . expand('%')
+    endif
+endfunction
+nmap <unique> <C-n>s :call SearchStringFromCurrentFileWithInput(0, 0, input('Search string: '))<CR>
+nmap <unique> <C-n>S :call SearchStringFromCurrentFileWithInput(0, 1, input('Search string: '))<CR>
 
 function! HighighlightColumn(flag)
     if a:flag
@@ -902,8 +956,6 @@ nmap gl :nohlsearch<CR>
 nmap gx :so ~/.vimrc<CR>
 
 nmap <unique> gc :marks<CR>
-nmap <unique> s :marks<CR>
-nmap <unique> S :marks<CR>
 "vim-signature
 let g:SignatureMap = {
             \ 'Leader'             :  "m",
@@ -928,3 +980,28 @@ let g:SignatureMap = {
             \ 'ListLocalMarks'     :  "m/",
             \ 'ListLocalMarkers'   :  "m?"
             \ }
+
+if has('unix')
+    "vcscommand
+    let g:VCSCommandMapPrefix = '<C-s>'
+endif
+
+nmap <unique> <C-j> :normal @:<CR>
+"quickfix mapping
+"nmap <unique> <C-h>qo :copen<CR>
+"nmap <unique> <C-h>qc :cclose<CR>
+"nmap <unique> <C-h>qj :cnext<CR>
+"nmap <unique> <C-h>qk :cprevious<CR>
+"nmap <unique> <C-h>qf :cfirst<CR>
+"nmap <unique> <C-h>ql :clast<CR>
+
+"Add file search path
+function! SetSearchFilePath(mode)
+    if a:mode
+        execute 'set path+=' . getcwd() . '/**'
+    else
+        execute 'set path-=' . getcwd() . '/**'
+    endif
+endfunction
+nmap <unique> <C-n>p :call SetSearchFilePath(1)<CR>
+nmap <unique> <C-n>P :call SetSearchFilePath(0)<CR>
