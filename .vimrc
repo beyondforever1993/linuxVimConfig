@@ -277,19 +277,7 @@ vnoremap <Leader>y "+y
 nmap <Leader>p "+p
 "插入和命令行模式映射粘贴快捷键
 map! <C-v> <C-R>+
-"map <C-x>0 "0y
-"map <C-x>1 "1y
-"map <C-x>2 "2y
-"map <C-x>3 "3y
-"map <C-x>4 "4y
-"map <C-x>5 "5y
-"map <C-x>6 "6y
-"map <C-x>7 "7y
-"map <C-x>8 "8y
-"map <C-x>9 "9y
 map <C-x>" ""y
-"map <C-x>+ "+y
-"map <C-x>y "+y
 map <C-x>x "+y
 map <C-x>a "ay
 map <C-x>A "Ay
@@ -315,8 +303,6 @@ map <C-n>7 "7p
 map <C-n>8 "8p
 map <C-n>9 "9p
 map <C-n>" ""p
-"map <C-n>+ "+p
-"map <C-n>p "+p
 map <C-n>n "+p
 map <C-n>a "ap
 map <C-n>A "Ap
@@ -497,6 +483,21 @@ set cursorline
 set cursorcolumn
 
 if has("unix")
+    "resovled when use ctrlsf, youcompleteme crash
+    let g:ycm_filetype_blacklist = {
+                \ 'tagbar' : 1,
+                \ 'qf' : 1,
+                \ 'notes' : 1,
+                \ 'markdown' : 1,
+                \ 'unite' : 1,
+                \ 'text' : 1,
+                \ 'vimwiki' : 1,
+                \ 'pandoc' : 1,
+                \ 'infolog' : 1,
+                \ 'mail' : 1,
+                \ 'ctrlsf': 1
+                \}
+
     "YouCompleteMe
     "let g:ycm_extra_conf_globlist = ['/home/genglei/*']
     let g:ycm_key_list_select_completion=['<TAB>', '<Down>', '<C-j>', '<C-n>']
@@ -564,6 +565,7 @@ nmap <silent> <leader>nn :NERDTreeToggle<cr>
 
 "TagBar
 nmap <silent> <leader>tb :TagbarToggle<cr>
+nmap <silent> <leader>hh :TagbarToggle<cr>
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
 let tagbar_left=1 
 let g:tagbar_sort = 0
@@ -837,8 +839,12 @@ if has("gui_running")
 endif
 
 if has("unix")
-    "fzf
-    nmap <leader>zz :FZF . <CR>
+    if !has('gui_running')
+        "fzf
+        nmap <leader>zz :FZF . <CR>
+    else
+        nnoremap <silent> <leader>zz :CtrlP .<CR>
+    endif
 endif
 
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -875,22 +881,22 @@ function! Replace(projectrange, confirm, wholeword, replace)
         endif
     endif
 endfunction
-"No confirm, no whole word
-nmap <unique> <C-x>r :call Replace(0, 0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
-"Confirm, no whole word
-nmap <unique> <C-x>R :call Replace(0, 1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
-"No confirm, whole word
-nmap <unique> <C-x>s :call Replace(0, 0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
-"Confirm, whole word
-nmap <unique> <C-x>S :call Replace(0, 1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
-"No confirm, whole word, project range
-nmap <unique> <C-x>m :call Replace(1, 0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
-"Confirm, whole word, project range
+"Current file, no confirm, whole word
+nmap <unique> <C-x>r :call Replace(0, 0, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+"Current file, confirm, whole word
+nmap <unique> <C-x>R :call Replace(0, 1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
+"Current file, no confirm, no whole word
+nmap <unique> <C-x>s :call Replace(0, 0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+"Current file, confirm, no whole word
+nmap <unique> <C-x>S :call Replace(0, 1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+"Project range, no confirm, whole word
+nmap <unique> <c-x>m :call replace(1, 0, 1, input('replace '.expand('<cword>').' with: '))<cr>
+"Project range, confirm, whole word
 nmap <unique> <C-x>M :call Replace(1, 1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
-"No confirm, no whole word, project range
-nmap <unique> <C-x>n :call Replace(1, 0, 0, input('Replace '.expand('<cword>').' with: '))<CR>
-"Confirm, no whole word, project range
-nmap <unique> <C-x>N :call Replace(1, 1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
+"Project range, no confirm, no whole word
+nmap <unique> <c-x>n :call replace(1, 0, 0, input('replace '.expand('<cword>').' with: '))<cr>
+"Project range, confirm, no whole word
+nmap <unique> <c-x>N :call replace(1, 1, 0, input('replace '.expand('<cword>').' with: '))<cr>
 
 
 function! SearchStringFromCurrentFile(ignorecase, context)
@@ -935,8 +941,8 @@ function! HighighlightColumn(flag)
         execute 'set colorcolumn='
     endif
 endfunction
-map <C-x>g :call HighighlightColumn(1)<CR>
-map <C-x>G :call HighighlightColumn(0)<CR>
+map <C-x>h :call HighighlightColumn(1)<CR>
+map <C-x>H :call HighighlightColumn(0)<CR>
 
 "Remap s keyword for myself used.
 "map s :registers<CR>
@@ -1005,5 +1011,5 @@ function! SetSearchFilePath(mode)
         execute 'set path-=' . getcwd() . '/**'
     endif
 endfunction
-nmap <unique> <C-n>p :call SetSearchFilePath(1)<CR>
-nmap <unique> <C-n>P :call SetSearchFilePath(0)<CR>
+nmap <unique> <C-x>p :call SetSearchFilePath(1)<CR>
+nmap <unique> <C-x>P :call SetSearchFilePath(0)<CR>
