@@ -628,6 +628,8 @@ let g:indent_guides_guide_size=1
 " 基于缩进或语法进行代码折叠
 "set foldmethod=indent
 set foldmethod=syntax
+"Open xml file fold
+let g:xml_syntax_folding = 1
 " 启动 vim 时关闭折叠代码
 set nofoldenable
 
