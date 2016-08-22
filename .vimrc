@@ -529,6 +529,7 @@ if has("unix")
     " 语法关键字补全         
     let g:ycm_seed_identifiers_with_syntax=1
     map <silent> <F5> :YcmForceCompileAndDiagnostics<cr>
+    map <silent> <F6> :YcmDiags<cr>
 endif
 
 "NERDTree
