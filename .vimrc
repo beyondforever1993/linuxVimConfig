@@ -1014,3 +1014,8 @@ function! SetSearchFilePath(mode)
 endfunction
 nmap <unique> <C-x>p :call SetSearchFilePath(1)<CR>
 nmap <unique> <C-x>P :call SetSearchFilePath(0)<CR>
+
+"Copy current filename
+nmap <unique> <C-x>g :let @+ = expand("%:t")<CR>
+nmap <unique> <C-x>G :let @+ = expand("%")<CR>
+nmap <unique> g<C-x> :let @+ = expand("%:p")<CR>
