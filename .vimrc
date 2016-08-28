@@ -892,7 +892,12 @@ function! Replace(projectrange, confirm, wholeword, replace)
     let replace = escape(a:replace, '/\&~')
 
     if a:projectrange
-        execute 'Qargs | argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+        "vim7.4 patch 858 support cdo cfdo ldo lfdo command
+        if v:version >= 800 || has('patch-7.4.858')
+            execute 'cfdo %s/' . search . '/' . replace . '/' . flag . '| update'
+        else
+            execute 'Qargs | argdo %s/' . search . '/' . replace . '/' . flag . '| update'
+        endif
     else
         if has("unix")
             execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
