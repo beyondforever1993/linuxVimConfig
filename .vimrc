@@ -361,7 +361,7 @@ endif
 "MarkPalette extended
 function! SourceMarkHighlight()
     "vim7.4 patch 1770 support terminal true color
-    if has('patch1770')
+    if v:verison >= 800 || has('patch-7.4.1770')
         let g:mwDefaultHighlightingPalette = 'extended'
         execute "MarkPalette extended"
     else
@@ -391,6 +391,8 @@ function! SourceMarkHighlight()
         endif
     endif
 endfunction
+
+
 nmap <unique> <C-m>n :MarkClear<CR>
 nmap <unique> <C-m>m :Marks<CR>
 nmap <unique> <C-m>1 <Plug>MarkSearchGroup1Next
@@ -1038,7 +1040,7 @@ nmap <unique> <C-x>G :let @+ = expand("%")<CR>
 nmap <unique> g<C-x> :let @+ = expand("%:p")<CR>
 
 "vim7.4 patch 1770 support terminal true color
-if has('patch1770')
+if v:verison >= 800 || has('patch-7.4.1770')
     set termguicolors
     execute "set t_8f=\e[38;2;%lu;%lu;%lum"
     execute "set t_8b=\e[48;2;%lu;%lu;%lum"
