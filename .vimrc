@@ -821,6 +821,7 @@ nmap <C-m>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-m>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-m>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-m>a :cs find a <C-R>=expand("<cword>")<CR><CR>	
 
 nmap <C-\>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
 nmap <C-\>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
@@ -830,6 +831,7 @@ nmap <C-\>e :scs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-\>i :scs find i <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-\>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+nmap <C-\>a :scs find a <C-R>=expand("<cword>")<CR><CR>	
 
 nmap <C-\><C-\>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\><C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
@@ -839,10 +841,10 @@ nmap <C-\><C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
 nmap <C-\><C-\>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-\><C-\>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
 nmap <C-\><C-\>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+nmap <C-\><C-\>a :vert scs find a <C-R>=expand("<cword>")<CR><CR>
 
-nmap <C-m>q :set cscopequickfix=s-,c-,d-,i-,t-,e-<CR>
+nmap <C-m>q :set cscopequickfix=s-,c-,d-,i-,t-,e-,a-<CR>
 nmap <C-m>Q :set cscopequickfix=<CR>
-nmap <C-m>a :args<CR>
 
 
 "multiple cursors
