@@ -42,6 +42,8 @@ Plugin 'vim-scripts/tabula.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'hukl/Smyck-Color-Scheme'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'adelarsq/vim-grimmjow'
+Plugin 'lifepillar/vim-solarized8'
 
 Plugin 'mattn/emmet-vim'
 
@@ -358,29 +360,35 @@ endif
 "testtermcolor :runtime syntax/colortest.vim
 "MarkPalette extended
 function! SourceMarkHighlight()
-    if !has('gui_running')
-        hi MarkWord1  ctermbg=Darkred      ctermfg=Black
-        hi MarkWord2  ctermbg=Darkgreen    ctermfg=Black
-        hi MarkWord3  ctermbg=Brown        ctermfg=Black
-        hi MarkWord4  ctermbg=Darkblue     ctermfg=Black
-        hi MarkWord5  ctermbg=Darkmagenta  ctermfg=Black
-        hi MarkWord6  ctermbg=Darkcyan     ctermfg=Black
-        hi MarkWord7  ctermbg=Cyan         ctermfg=Black
-        hi MarkWord8  ctermbg=Green        ctermfg=Black
-        hi MarkWord9  ctermbg=Yellow       ctermfg=Black
-        hi MarkWord10 ctermbg=Red          ctermfg=Black
-        hi MarkWord11 ctermbg=Magenta      ctermfg=Black
-        hi MarkWord12 ctermbg=Blue         ctermfg=Black
-        hi MarkWord13 ctermbg=Darkyellow   ctermfg=Black
-        hi MarkWord14 ctermbg=lightred     ctermfg=Black
-        hi MarkWord15 ctermbg=Lightgreen   ctermfg=Black
-        hi MarkWord16 ctermbg=Lightblue    ctermfg=Black
-        hi MarkWord17 ctermbg=Lightmagenta ctermfg=Black
-        hi MarkWord18 ctermbg=Lightcyan    ctermfg=Black
-    endif
-
-    if has("gui_running")
+    "vim7.4 patch 1770 support terminal true color
+    if has('patch1770')
         let g:mwDefaultHighlightingPalette = 'extended'
+        execute "MarkPalette extended"
+    else
+        if !has('gui_running')
+            hi MarkWord1  ctermbg=Darkred      ctermfg=Black
+            hi MarkWord2  ctermbg=Darkgreen    ctermfg=Black
+            hi MarkWord3  ctermbg=Brown        ctermfg=Black
+            hi MarkWord4  ctermbg=Darkblue     ctermfg=Black
+            hi MarkWord5  ctermbg=Darkmagenta  ctermfg=Black
+            hi MarkWord6  ctermbg=Darkcyan     ctermfg=Black
+            hi MarkWord7  ctermbg=Cyan         ctermfg=Black
+            hi MarkWord8  ctermbg=Green        ctermfg=Black
+            hi MarkWord9  ctermbg=Yellow       ctermfg=Black
+            hi MarkWord10 ctermbg=Red          ctermfg=Black
+            hi MarkWord11 ctermbg=Magenta      ctermfg=Black
+            hi MarkWord12 ctermbg=Blue         ctermfg=Black
+            hi MarkWord13 ctermbg=Darkyellow   ctermfg=Black
+            hi MarkWord14 ctermbg=lightred     ctermfg=Black
+            hi MarkWord15 ctermbg=Lightgreen   ctermfg=Black
+            hi MarkWord16 ctermbg=Lightblue    ctermfg=Black
+            hi MarkWord17 ctermbg=Lightmagenta ctermfg=Black
+            hi MarkWord18 ctermbg=Lightcyan    ctermfg=Black
+        endif
+
+        if has("gui_running")
+            let g:mwDefaultHighlightingPalette = 'extended'
+        endif
     endif
 endfunction
 nmap <unique> <C-m>n :MarkClear<CR>
@@ -432,10 +440,10 @@ syntax enable
 if has("gui_running")
     "light or dark
     "set background=light
-    colorscheme molokai 
+    colorscheme grimmjow
 else
-    set background=dark
-    colorscheme desert256v2
+    "set background=dark
+    colorscheme molokai 
 endif
 
 
@@ -640,7 +648,13 @@ nmap <Leader>ch :A<CR>
 nmap <Leader>sch :AS<CR>
 
 "ctrlsf.vim
-nnoremap <Leader>sf :CtrlSF<CR>
+if has('unix')
+    nnoremap <Leader>sf :CtrlSF<CR>
+    let g:ctrlsf_ackprg = '/usr/bin/ag'
+    let g:ctrlsf_extra_backend_args = {
+                \ 'ag': '--ignore "cscope.*"'
+                \ }
+endif
 
 "Ag.vim
 nnoremap <Leader>aa :Ag<CR>
@@ -903,10 +917,11 @@ nmap <unique> <c-x>N :call replace(1, 1, 0, input('replace '.expand('<cword>').'
 
 
 function! SearchStringFromCurrentFile(ignorecase, context)
+    let filename = escape(expand('%'), '() \')
     if a:context
-        execute 'CtrlSF ' . expand('<cword>')  . ' ' .expand('%')
+        execute 'CtrlSF ' . expand('<cword>')  . ' ' . filename 
     else
-        execute 'Ag ' . expand('<cword>') . ' ' . expand('%')
+        execute 'Ag ' . expand('<cword>') . ' ' . filename
     endif
 endfunction
 nmap <unique> s :call SearchStringFromCurrentFile(0, 0)<CR>
@@ -1021,3 +1036,10 @@ nmap <unique> <C-x>P :call SetSearchFilePath(0)<CR>
 nmap <unique> <C-x>g :let @+ = expand("%:t")<CR>
 nmap <unique> <C-x>G :let @+ = expand("%")<CR>
 nmap <unique> g<C-x> :let @+ = expand("%:p")<CR>
+
+"vim7.4 patch 1770 support terminal true color
+if has('patch1770')
+    set termguicolors
+    execute "set t_8f=\e[38;2;%lu;%lu;%lum"
+    execute "set t_8b=\e[48;2;%lu;%lu;%lum"
+endif
