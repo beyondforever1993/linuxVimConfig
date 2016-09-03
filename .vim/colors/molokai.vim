@@ -50,7 +50,7 @@ hi Exception       guifg=#A6E22E               gui=bold
 hi Float           guifg=#AE81FF
 hi FoldColumn      guifg=#465457 guibg=#000000
 hi Folded          guifg=#465457 guibg=#000000
-hi Function        guifg=#A6E22E
+hi Function        guifg=#A6E22E               gui=bold
 hi Identifier      guifg=#FD971F
 hi Ignore          guifg=#808080 guibg=bg
 hi IncSearch       guifg=#C4BE89 guibg=#000000
@@ -88,8 +88,11 @@ if has("spell")
     hi SpellRare   guisp=#FFFFFF gui=undercurl
 endif
 hi Statement       guifg=#F92672               gui=bold
-hi StatusLine      guifg=#455354 guibg=fg
-hi StatusLineNC    guifg=#808080 guibg=#080808
+"hi StatusLine      guifg=#455354 guibg=fg
+"hi StatusLineNC    guifg=#808080 guibg=#080808
+hi StatusLine      guifg=#A6E22E guibg=fg
+hi StatusLineNC    guifg=#A6E22E guibg=fg
+
 hi StorageClass    guifg=#FD971F               gui=italic
 hi Structure       guifg=#66D9EF
 hi Tag             guifg=#F92672               gui=italic
@@ -167,7 +170,7 @@ if &t_Co > 255
    hi Float           ctermfg=135
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Folded          ctermfg=67  ctermbg=16
-   hi Function        ctermfg=118
+   hi Function        ctermfg=118               cterm=bold
    hi Identifier      ctermfg=208               cterm=none
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
@@ -206,8 +209,10 @@ if &t_Co > 255
        hi SpellRare  ctermfg=none ctermbg=none  cterm=reverse
    endif
    hi Statement       ctermfg=161               cterm=bold
-   hi StatusLine      ctermfg=238 ctermbg=253
-   hi StatusLineNC    ctermfg=244 ctermbg=232
+   "hi StatusLine      ctermfg=238 ctermbg=253
+   "hi StatusLineNC    ctermfg=244 ctermbg=232
+   hi StatusLine      ctermfg=118 
+   hi StatusLineNC    ctermfg=118 
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=81
    hi Tag             ctermfg=161
@@ -250,7 +255,7 @@ if &t_Co > 255
        hi Error           ctermfg=222 ctermbg=233
        hi Exception       ctermfg=154               cterm=bold
        hi Float           ctermfg=141
-       hi Function        ctermfg=154
+       hi Function        ctermfg=154               cterm=bold
        hi Identifier      ctermfg=208
 
        hi Keyword         ctermfg=197               cterm=bold
