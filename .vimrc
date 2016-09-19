@@ -28,7 +28,7 @@ endif
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 if has("win32") || has("win64")
-    Plugin 'myusuf3/numbers.vim'
+    "Plugin 'myusuf3/numbers.vim'
 endif
 "file explorer
 Plugin 'scrooloose/nerdtree'
@@ -79,6 +79,7 @@ if has("unix")
     Plugin 'junegunn/fzf'
 endif
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Shougo/unite.vim'
 if has('python') || has('python3')
     Plugin 'FelikZ/ctrlp-py-matcher'
 endif
@@ -442,10 +443,10 @@ syntax enable
 if has("gui_running")
     "light or dark
     "set background=light
-    colorscheme grimmjow
+    colorscheme solarized8_dark_flat
 else
     "set background=dark
-    colorscheme molokai 
+    colorscheme solarized8_dark_flat
 endif
 
 
@@ -794,8 +795,11 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
 "let g:ctrlp_max_history = 0
 let g:ctrlp_map = '<F12>'
-if has('python') || has('python3')
-    let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+if has('unix')
+    if has('python') || has('python3')
+        "Vim8 windows platform when enable this, ctrlp can't find files.
+        let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+    endif
 endif
 let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
 if executable("ag") 
@@ -859,7 +863,7 @@ if has("gui_running")
     set selection=inclusive
 endif
 
-if has("unix")
+if has("unix") || has('win32') || has('win64')
     if !has('gui_running')
         "fzf
         nmap <leader>zz :FZF . <CR>
