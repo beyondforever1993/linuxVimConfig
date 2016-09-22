@@ -81,6 +81,7 @@ endif
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'Shougo/unite.vim'
 if has('python') || has('python3')
+    Plugin 'Yggdroot/LeaderF'
     Plugin 'FelikZ/ctrlp-py-matcher'
 endif
 
@@ -795,6 +796,13 @@ let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
 "let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
 "let g:ctrlp_max_history = 0
 let g:ctrlp_map = '<F12>'
+if has('win32') || has('win64')
+    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
+elseif has('unix')
+    if executable('ag')
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
+    endif
+endif
 if has('unix')
     if has('python') || has('python3')
         "Vim8 windows platform when enable this, ctrlp can't find files.
@@ -807,13 +815,21 @@ if executable("ag")
     " Use Ag over Grep 
     set grepprg=ag\ --nogroup\ --nocolor 
     " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
     " ag is fast enough that CtrlP doesn't need to cache 
     let g:ctrlp_use_caching = 1 
     if has("unix")
         let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
     endif
 endif
+
+"Yggdroot/LeaderF
+let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
+"nnoremap <unique> :Leaderf<CR>
+"nnoremap <unique> :LeaderfBuffer<CR>
+let g:Lf_PythonVersion = 3
+let g:Lf_ShortcutF = '<leader>gf' 
+let g:Lf_ShortcutB = '<leader>gb'
+nnoremap <unique> <leader>gm :LeaderfMru<CR>
 
 
 "cscope mapping keys
