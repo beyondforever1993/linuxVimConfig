@@ -826,7 +826,6 @@ endif
 let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
 "nnoremap <unique> :Leaderf<CR>
 "nnoremap <unique> :LeaderfBuffer<CR>
-let g:Lf_PythonVersion = 3
 let g:Lf_ShortcutF = '<leader>gf' 
 let g:Lf_ShortcutB = '<leader>gb'
 nnoremap <unique> <leader>gm :LeaderfMru<CR>
