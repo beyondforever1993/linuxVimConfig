@@ -949,7 +949,12 @@ function! SearchStringFromCurrentFile(ignorecase, context)
     if a:context
         execute 'CtrlSF ' . expand('<cword>')  . ' ' . filename 
     else
-        execute 'Ag ' . expand('<cword>') . ' ' . filename
+        if has('win32') || has('win64')
+            execute 'vimgrep /' . expand('<cword>') . '/gj ' . filename
+            execute 'copen'
+        else
+            execute 'Ag ' . expand('<cword>') . ' ' . filename
+        endif
     endif
 endfunction
 nmap <unique> s :call SearchStringFromCurrentFile(0, 0)<CR>
