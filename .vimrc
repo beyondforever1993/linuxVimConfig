@@ -1008,7 +1008,7 @@ vmap g= :'<,'>EasyAlign=<CR>
 vmap g2 :'<,'>EasyAlign2=<CR>
 vmap g3 :'<,'>EasyAlign\<CR> gv :'<,'>EasyAlign=<CR>
 "sudo write
-nmap gy :w !sudo tee %<CR>
+"nmap gy :w !sudo tee %<CR>
 "Remove highlighting of search matches
 nmap gl :nohlsearch<CR>
 "source .vimrc
@@ -1069,6 +1069,8 @@ nmap <unique> <C-x>P :call SetSearchFilePath(0)<CR>
 nmap <unique> <C-x>g :let @+ = expand("%:t")<CR>
 nmap <unique> <C-x>G :let @+ = expand("%")<CR>
 nmap <unique> g<C-x> :let @+ = expand("%:p")<CR>
+nmap <unique> gy :let @+ = expand('<cword>')<CR>
+nmap <unique> gY :let @+ = expand('<cWORD>')<CR>
 
 "vim7.4 patch 1770 support terminal true color
 if v:version >= 800 || has('patch-7.4.1770')
