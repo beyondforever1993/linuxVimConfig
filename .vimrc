@@ -935,13 +935,13 @@ nmap <unique> <C-x>s :call Replace(0, 0, 0, input('Replace '.expand('<cword>').'
 "Current file, confirm, no whole word
 nmap <unique> <C-x>S :call Replace(0, 1, 0, input('Replace '.expand('<cword>').' with: '))<CR>
 "Project range, no confirm, whole word
-nmap <unique> <c-x>m :call replace(1, 0, 1, input('replace '.expand('<cword>').' with: '))<cr>
+nmap <unique> <c-x>m :call Replace(1, 0, 1, input('Replace '.expand('<cword>').' with: '))<cr>
 "Project range, confirm, whole word
 nmap <unique> <C-x>M :call Replace(1, 1, 1, input('Replace '.expand('<cword>').' with: '))<CR>
 "Project range, no confirm, no whole word
-nmap <unique> <c-x>n :call replace(1, 0, 0, input('replace '.expand('<cword>').' with: '))<cr>
+nmap <unique> <c-x>n :call Replace(1, 0, 0, input('Replace '.expand('<cword>').' with: '))<cr>
 "Project range, confirm, no whole word
-nmap <unique> <c-x>N :call replace(1, 1, 0, input('replace '.expand('<cword>').' with: '))<cr>
+nmap <unique> <c-x>N :call Replace(1, 1, 0, input('Replace '.expand('<cword>').' with: '))<cr>
 
 
 function! SearchStringFromCurrentFile(ignorecase, context)
