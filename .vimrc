@@ -47,6 +47,7 @@ Plugin 'lifepillar/vim-solarized8'
 
 Plugin 'mattn/emmet-vim'
 
+Plugin 'uguu-org/vim-matrix-screensaver'
 
 "multiple cursor
 Plugin 'terryma/vim-multiple-cursors'
@@ -898,9 +899,9 @@ function! Replace(projectrange, confirm, wholeword, replace)
     wa
     let flag = ''
     if a:confirm
-        let flag .= 'gec'
+        let flag .= 'gIec'
     else
-        let flag .= 'ge'
+        let flag .= 'gIe'
     endif
     let search = ''
     if a:wholeword
@@ -1078,3 +1079,5 @@ if v:version >= 800 || has('patch-7.4.1770')
     execute "set t_8f=\e[38;2;%lu;%lu;%lum"
     execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 endif
+
+map <unique><silent> <F2> :Matrix<cr>
