@@ -44,6 +44,7 @@ Plugin 'hukl/Smyck-Color-Scheme'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'adelarsq/vim-grimmjow'
 Plugin 'lifepillar/vim-solarized8'
+Plugin 'lifepillar/vim-wwdc16-theme'
 
 Plugin 'mattn/emmet-vim'
 
