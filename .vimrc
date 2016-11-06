@@ -49,6 +49,7 @@ Plugin 'lifepillar/vim-wwdc16-theme'
 Plugin 'mattn/emmet-vim'
 
 Plugin 'uguu-org/vim-matrix-screensaver'
+Plugin 'szw/vim-maximizer'
 
 "multiple cursor
 Plugin 'terryma/vim-multiple-cursors'
@@ -57,6 +58,9 @@ Plugin 'terryma/vim-multiple-cursors'
 
 "Switch between .c and .h
 Plugin 'vim-scripts/a.vim'
+Plugin 'derekwyatt/vim-fswitch'
+
+Plugin 't9md/vim-choosewin'
 
 "mark sign
 Plugin 'kshenoy/vim-signature'
@@ -1082,3 +1086,12 @@ if v:version >= 800 || has('patch-7.4.1770')
 endif
 
 map <unique><silent> <F2> :Matrix<cr>
+
+"choosewin plugin
+nmap  -  <Plug>(choosewin)
+nmap <Leader>wc <Plug>(choosewin)
+let g:choosewin_overlay_enable = 1
+
+"toggle window
+nmap <Leader>wz :MaximizerToggle!<CR>
+
