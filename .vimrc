@@ -344,7 +344,7 @@ nmap <Leader>w_ <C-W>_
 
 nmap <Leader>dd :pwd<CR>
 
-if has("gui_running")
+if has("gui_running") && has("unix")
     " 禁止光标闪烁
     "set gcr=a:block-blinkon0
     " " 禁止显示滚动条
