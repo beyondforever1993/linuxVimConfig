@@ -30,10 +30,14 @@ Plugin 'gmarik/Vundle.vim'
 if has("win32") || has("win64")
     "Plugin 'myusuf3/numbers.vim'
 endif
-"file explorer
+""""""""""""""""""""""file explorer""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'scrooloose/nerdtree'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"colorschemes
+""""""""""""""""""""""coloschemes""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plugin 'google/vim-colorscheme-primary'
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
@@ -41,70 +45,122 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'vim-scripts/tabula.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'hukl/Smyck-Color-Scheme'
-Plugin 'flazz/vim-colorschemes'
+"Plugin 'flazz/vim-colorschemes'
 Plugin 'adelarsq/vim-grimmjow'
 Plugin 'lifepillar/vim-solarized8'
 Plugin 'lifepillar/vim-wwdc16-theme'
+Plugin 'joshdick/onedark.vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Plugin 'mattn/emmet-vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"For web-developer, not used now
+"Plugin 'mattn/emmet-vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"windows operation
 Plugin 'uguu-org/vim-matrix-screensaver'
 Plugin 'szw/vim-maximizer'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "multiple cursor
 Plugin 'terryma/vim-multiple-cursors'
 "Visualization of code indentation
 "Plugin 'nathanaelkane/vim-indent-guides'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Switch between .c and .h
 Plugin 'vim-scripts/a.vim'
 Plugin 'derekwyatt/vim-fswitch'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Control windows
 Plugin 't9md/vim-choosewin'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mark sign
 Plugin 'kshenoy/vim-signature'
 "Plugin 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"Find the file contents
-Plugin 'yegappan/grep'
-Plugin 'mileszs/ack.vim'
-Plugin 'dyng/ctrlsf.vim'
-Plugin 'rking/ag.vim'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"File search tools
+"Deprecated
+"Plugin 'yegappan/grep'
+"Deprecated
+"Plugin 'mileszs/ack.vim'
+"Deprecated
+"Plugin 'dyng/ctrlsf.vim'
+"Deprecated
+"Plugin 'rking/ag.vim'
+"Deprecated
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Deprecated
+"Plugin 'Shougo/unite.vim'
 Plugin 'nelstrom/vim-qargs'
-
-"Code comments
-Plugin 'scrooloose/nerdcommenter'
-
-if has("win32") || has("win64")
-    "Plugin 'fholgado/minibufexpl.vim'
-endif
-
-if has("unix")
-    Plugin 'wincent/command-t'
-    Plugin 'junegunn/fzf'
-endif
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'Shougo/unite.vim'
 if has('python') || has('python3')
     Plugin 'Yggdroot/LeaderF'
-    Plugin 'FelikZ/ctrlp-py-matcher'
+    "Deprecated
+    "Plugin 'FelikZ/ctrlp-py-matcher'
 endif
-
-"Programming
-Plugin 'majutsushi/tagbar'
 if has("unix")
+    "Deprecated
+    "Plugin 'wincent/command-t'
+    "terminal finder tool
+    Plugin 'junegunn/fzf'
+endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Code comments
+Plugin 'scrooloose/nerdcommenter'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Programming
+"function,variables,defitions indexing
+Plugin 'majutsushi/tagbar'
+
+if has("unix")
+    "Auto-completion, real-time compilation
     Plugin 'Valloric/YouCompleteMe'
     "Plugin 'rdnetto/YCM-Generator'
+    "Grammar check
     Plugin 'scrooloose/syntastic'
+    "snippets
     Plugin 'SirVer/ultisnips'
 endif
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"Text obejct quick control
 Plugin 'gcmt/wildfire.vim'
 
-"comment
+"Table, graphics operation
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'vim-scripts/DrawIt'
 
@@ -114,24 +170,30 @@ if has("unix")
     Plugin 'bling/vim-airline'
 endif
 
+"Welcome Screen
 Plugin 'mhinz/vim-startify'
+"calendar
 Plugin 'itchyny/calendar.vim'
 
+"mouse motion
 Plugin 'Lokaltog/vim-easymotion'
 
 "Column alignment
 Plugin 'junegunn/vim-easy-align'
+"Text filtering and alignment
 Plugin 'godlygeek/tabular'
 
 if has("unix")
     "markdown
     Plugin 'suan/vim-instant-markdown'
-    "
-    "Plugin 'lilydjwg/fcitx.vim'
 endif
 
-Plugin 'tpope/vim-fugitive'
+"git integrated, not used 
+"Plugin 'tpope/vim-fugitive'
+
+"quoting/parenthesizing tool
 Plugin 'tpope/vim-surround'
+
 if has("unix")
     "Local plugins
     "Plugin 'file:///home/genglei/.vim/bundle/indexer', {'pinned': 1}
@@ -286,7 +348,10 @@ vnoremap <Leader>y "+y
 "设置快捷键将系统剪贴板内容粘贴至 vim
 nmap <Leader>p "+p
 "插入和命令行模式映射粘贴快捷键
+
+"ctrl-v ctrl-M conflict
 map! <C-v> <C-R>+
+
 map <C-x>" ""y
 map <C-x>x "+y
 map <C-x>a "ay
@@ -449,23 +514,22 @@ set ignorecase smartcase
 syntax enable
 if has("gui_running")
     "light or dark
-    "set background=light
-    colorscheme solarized8_dark_flat
+    set background=dark
+    colorscheme solarized8_flat
 else
-    "set background=dark
-    colorscheme solarized8_dark_flat
+    set background=dark
+    colorscheme solarized8_flat
 endif
 
 
+"Deprecated
 "taglist.vim setting
-map <silent> <F9> :TlistToggle<CR>
-set nocompatible
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 0
+"map <silent> <F9> :TlistToggle<CR>
+"set nocompatible
+"let Tlist_Show_One_File = 1
+"let Tlist_Exit_OnlyWindow = 1
+"let Tlist_Use_Right_Window = 0
 "nmap <silent> <leader>tt :TlistToggle<cr>
-
-
 
 filetype plugin indent on
 set completeopt=longest,menu
@@ -478,8 +542,7 @@ set expandtab
 
 " autocmd FileType make setlocal noexpandtab
 
-
-
+"Deprecated
 "winManager setting
 "let g:winManagerWindowLayout = "BufExplorer,FileExplorer|TagList"
 "let g:winManagerWindowLayout = "BufExplorer,TagList"
@@ -555,6 +618,7 @@ let g:NERDTreeWinPos="right"
 nmap <silent> <leader>nn :NERDTreeToggle<cr>
 
 
+"Deprecated
 "Command-T
 "nmap <silent> <leader>cc :CommandT<cr>
 "nmap <silent> <leader>cb :CommandTBuffer<cr>
@@ -589,6 +653,7 @@ nmap <silent> <leader>hh :TagbarToggle<cr>
 let tagbar_left=1 
 let g:tagbar_sort = 0
 
+"Deprecated
 "UltiSnips
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -598,10 +663,10 @@ let g:tagbar_sort = 0
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
+"Deprecated
 "Emmet-vim
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
-
+"let g:user_emmet_install_global = 0
+"autocmd FileType html,css EmmetInstall
 
 "language
 set fileencodings=utf-8,chinese,gb2312,gbk,gb18030 
@@ -657,37 +722,34 @@ nmap <Leader>ch :A<CR>
 " 子窗口中显示 *.cpp 或 *.h
 nmap <Leader>sch :AS<CR>
 
+"Deprecated
 "ctrlsf.vim
-if has('unix')
-    nnoremap <Leader>sf :CtrlSF<CR>
-    let g:ctrlsf_ackprg = '/usr/bin/ag'
-    let g:ctrlsf_extra_backend_args = {
-                \ 'ag': '--ignore "cscope.*"'
-                \ }
-endif
+"if has('unix')
+"    nnoremap <Leader>sf :CtrlSF<CR>
+"    let g:ctrlsf_ackprg = '/usr/bin/ag'
+"    let g:ctrlsf_extra_backend_args = {
+"                \ 'ag': '--ignore "cscope.*"'
+"                \ }
+"endif
 
+"Deprecated
 "Ag.vim
-nnoremap <Leader>aa :Ag<CR>
-if has("unix")
-    let g:ag_prg='ag --vimgrep --smart-case --ignore "cscope.*" --ignore "*.o"'
-endif
+"nnoremap <Leader>aa :Ag<CR>
+"if has("unix")
+"    let g:ag_prg='ag --vimgrep --smart-case --ignore "cscope.*" --ignore "*.o"'
+"endif
 
+"Deprecated
 "Grep.vim
 "nnoremap <silent> <F3> :Grep<CR>
-nnoremap <Leader>gr :Grep<CR>
-let Grep_Default_Options = '-rnI --exclude-dir=.svn --exclude=cscope.*' 
+"nnoremap <Leader>gr :Grep<CR>
+"let Grep_Default_Options = '-rnI --exclude-dir=.svn --exclude=cscope.*' 
 
+"Deprecated
 "Ack.vim
-nnoremap <Leader>ac :Ack!<CR>
+"nnoremap <Leader>ac :Ack!<CR>
 
 let NERD_c_alt_style=1
-
-" 显示/隐藏 MiniBufExplorer 窗口
-map <Leader>bl :MBEToggle<cr>
-"map <Leader>j :MBEbn<cr>
-"map <Leader>k :MBEbp<cr>
-map <silent> <F7> :MBEbn<cr>
-map <silent> <F8> :MBEbp<cr>
 
 if has("unix")
     " 设置插件 indexer 调用 ctags 的参数
@@ -698,29 +760,6 @@ if has("unix")
 endif
 
 
-" ctags 
-" 正向遍历同名标签
-nmap <Leader>tn :tnext<CR>
-" 反向遍历同名标签
-nmap <Leader>tp :tprevious<CR>
-"到第一个匹配
-nmap <Leader>tf :tfirst<CR>
-"到最后一个匹配
-nmap <Leader>tl :tlast<CR>
-map <silent> <F9> :tnext<cr>
-map <silent> <F10> :tprevious<cr>
-"查找标签栈
-nmap <Leader><Leader>n :tags<cr>
-"跳到最新的标签 tfrist
-"nmap <Leader><Leader>f :tag<cr>
-"在分隔窗口打开
-nmap <Leader><Leader>s :stag<cr>
-"预览函数定义
-nmap <Leader><Leader>p :ptag<cr>
-"列出标签的所有引用
-nmap <Leader><Leader>t :tjump<cr>
-"查看函数原型
-nmap <Leader><Leader>d :psearch<cr>
 
 if has("unix")
     "syntastic 
@@ -774,20 +813,17 @@ if has("unix")
     nmap <Leader>f :call Mydict()<CR>
 endif
 
+"Search system include files
 if has("unix")
     set path+=/usr/include/**
 endif
 
-
-
-"nmap <C-N> :cnext<cr>
-"nmap <C-P> :cprevious<cr>
-
-if has("unix")
-    "commandT  enconding issue
-    let g:CommandTEncoding = 'UTF-8'
-    nnoremap <silent> <leader>mr :CommandTMRU<CR>
-endif
+"Deprecated
+"if has("unix")
+"    "commandT  enconding issue
+"    let g:CommandTEncoding = 'UTF-8'
+"    nnoremap <silent> <leader>mr :CommandTMRU<CR>
+"endif
 
 " use 256 colors in terminal
 if !has("gui_running")
@@ -795,46 +831,39 @@ if !has("gui_running")
     set term=screen-256color
 endif
 
+"Deprecated
 "Ctrlp
-nnoremap <silent> <leader>ct :CtrlP .<CR>
-let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
-"let g:ctrlp_prompt_mappings = { 'PrtHistory(-1)': ['<c-p>'] }
-"let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
-"let g:ctrlp_max_history = 0
-let g:ctrlp_map = '<F12>'
-if has('win32') || has('win64')
-    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
-elseif has('unix')
-    if executable('ag')
-        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
-    endif
-endif
-if has('unix')
-    if has('python') || has('python3')
-        "Vim8 windows platform when enable this, ctrlp can't find files.
-        let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
-    endif
-endif
-let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
-if executable("ag") 
-    let g:ackprg = 'ag --nogroup --nocolor --column' 
-    " Use Ag over Grep 
-    set grepprg=ag\ --nogroup\ --nocolor 
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
-    " ag is fast enough that CtrlP doesn't need to cache 
-    let g:ctrlp_use_caching = 1 
-    if has("unix")
-        let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-    endif
-endif
-
-"Yggdroot/LeaderF
-let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
-"nnoremap <unique> :Leaderf<CR>
-"nnoremap <unique> :LeaderfBuffer<CR>
-let g:Lf_ShortcutF = '<leader>gf' 
-let g:Lf_ShortcutB = '<leader>gb'
-nnoremap <unique> <leader>gm :LeaderfMru<CR>
+"nnoremap <silent> <leader>ct :CtrlP .<CR>
+"let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:200'
+""let g:ctrlp_prompt_mappings = { 'PrtHistory(-1)': ['<c-p>'] }
+""let g:ctrlp_prompt_mappings = { 'PrtHistory(1)': ['<c-n>'] }
+""let g:ctrlp_max_history = 0
+"let g:ctrlp_map = '<F12>'
+"if has('win32') || has('win64')
+"    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
+"elseif has('unix')
+"    if executable('ag')
+"        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
+"    endif
+"endif
+"if has('unix')
+"    if has('python') || has('python3')
+"        "Vim8 windows platform when enable this, ctrlp can't find files.
+"        let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
+"    endif
+"endif
+"let g:ctrlp_custom_ignore = {'file': '\v\.(o|so|dll|a)$'}
+"if executable("ag") 
+"    let g:ackprg = 'ag --nogroup --nocolor --column' 
+"    " Use Ag over Grep 
+"    set grepprg=ag\ --nogroup\ --nocolor 
+"    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
+"    " ag is fast enough that CtrlP doesn't need to cache 
+"    let g:ctrlp_use_caching = 1 
+"    if has("unix")
+"        let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+"    endif
+"endif
 
 
 "cscope mapping keys
@@ -884,14 +913,15 @@ if has("gui_running")
     set selection=inclusive
 endif
 
-if has("unix") || has('win32') || has('win64')
-    if !has('gui_running')
-        "fzf
-        nmap <leader>zz :FZF . <CR>
-    else
-        nnoremap <silent> <leader>zz :CtrlP .<CR>
-    endif
-endif
+"Deprecated
+"if has("unix") || has('win32') || has('win64')
+"    if !has('gui_running')
+"        "fzf
+"        nmap <leader>zz :FZF . <CR>
+"    else
+"        nnoremap <silent> <leader>zz :CtrlP .<CR>
+"    endif
+"endif
 
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
@@ -950,46 +980,49 @@ nmap <unique> <c-x>n :call Replace(1, 0, 0, input('Replace '.expand('<cword>').'
 nmap <unique> <c-x>N :call Replace(1, 1, 0, input('Replace '.expand('<cword>').' with: '))<cr>
 
 
-function! SearchStringFromCurrentFile(ignorecase, context)
-    let filename = escape(expand('%'), '() \')
-    if a:context
-        execute 'CtrlSF ' . expand('<cword>')  . ' ' . filename 
-    else
-        if has('win32') || has('win64')
-            execute 'vimgrep /' . expand('<cword>') . '/gj ' . filename
-            execute 'copen'
-        else
-            execute 'Ag ' . expand('<cword>') . ' ' . filename
-        endif
-    endif
-endfunction
-nmap <unique> s :call SearchStringFromCurrentFile(0, 0)<CR>
-nmap <unique> S :call SearchStringFromCurrentFile(0, 1)<CR>
+"Deprecated
+"function! SearchStringFromCurrentFile(ignorecase, context)
+"    let filename = escape(expand('%'), '() \')
+"    if a:context
+"        execute 'CtrlSF ' . expand('<cword>')  . ' ' . filename 
+"    else
+"        if has('win32') || has('win64')
+"            execute 'vimgrep /' . expand('<cword>') . '/gj ' . filename
+"            execute 'copen'
+"        else
+"            execute 'Ag ' . expand('<cword>') . ' ' . filename
+"        endif
+"    endif
+"endfunction
+"nmap <unique> s :call SearchStringFromCurrentFile(0, 0)<CR>
+"nmap <unique> S :call SearchStringFromCurrentFile(0, 1)<CR>
 
+"Deprecated
 "search string in visual mode
-function! SearchStringFromCurrentFileInVisualMode(ignorecase, context)
-    let search = ''
-    let search .= '"' . getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1] . '"'
-    if a:context
-        execute 'CtrlSF ' . search . ' ' .expand('%')
-    else
-        execute 'Ag ' . search . ' ' . expand('%')
-    endif
-endfunction
-vmap <unique> <C-n>v :call SearchStringFromCurrentFileInVisualMode(0, 0)<CR>
-vmap <unique> <C-n>V :call SearchStringFromCurrentFileInVisualMode(0, 1)<CR>
+"function! SearchStringFromCurrentFileInVisualMode(ignorecase, context)
+"    let search = ''
+"    let search .= '"' . getline("'<")[getpos("'<")[2]-1:getpos("'>")[2]-1] . '"'
+"    if a:context
+"        execute 'CtrlSF ' . search . ' ' .expand('%')
+"    else
+"        execute 'Ag ' . search . ' ' . expand('%')
+"    endif
+"endfunction
+"vmap <unique> <C-n>v :call SearchStringFromCurrentFileInVisualMode(0, 0)<CR>
+"vmap <unique> <C-n>V :call SearchStringFromCurrentFileInVisualMode(0, 1)<CR>
 
+"Deprecated
 "search string with input
-function! SearchStringFromCurrentFileWithInput(ignorecase, context, searchstring)
-    let searchstring = escape(a:searchstring, '/\&~')
-    if a:context
-        execute 'CtrlSF ' . searchstring  . ' ' .expand('%')
-    else
-        execute 'Ag ' . searchstring . ' ' . expand('%')
-    endif
-endfunction
-nmap <unique> <C-n>s :call SearchStringFromCurrentFileWithInput(0, 0, input('Search string: '))<CR>
-nmap <unique> <C-n>S :call SearchStringFromCurrentFileWithInput(0, 1, input('Search string: '))<CR>
+"function! SearchStringFromCurrentFileWithInput(ignorecase, context, searchstring)
+"    let searchstring = escape(a:searchstring, '/\&~')
+"    if a:context
+"        execute 'CtrlSF ' . searchstring  . ' ' .expand('%')
+"    else
+"        execute 'Ag ' . searchstring . ' ' . expand('%')
+"    endif
+"endfunction
+"nmap <unique> <C-n>s :call SearchStringFromCurrentFileWithInput(0, 0, input('Search string: '))<CR>
+"nmap <unique> <C-n>S :call SearchStringFromCurrentFileWithInput(0, 1, input('Search string: '))<CR>
 
 function! HighighlightColumn(flag)
     if a:flag
@@ -1000,10 +1033,6 @@ function! HighighlightColumn(flag)
 endfunction
 map <C-x>h :call HighighlightColumn(1)<CR>
 map <C-x>H :call HighighlightColumn(0)<CR>
-
-"Remap s keyword for myself used.
-"map s :registers<CR>
-"map S :display<CR>
 
 
 map gz :display<CR>
@@ -1085,7 +1114,7 @@ if v:version >= 800 || has('patch-7.4.1770')
     execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 endif
 
-map <unique><silent> <F2> :Matrix<cr>
+"map <unique><silent> <F2> :Matrix<cr>
 
 "choosewin plugin
 nmap  -  <Plug>(choosewin)
@@ -1095,3 +1124,53 @@ let g:choosewin_overlay_enable = 1
 "toggle window
 nmap <Leader>wz :MaximizerToggle!<CR>
 
+"Doxygen
+let g:DoxygenToolkit_briefTag_pre = "@brief "
+"let g:DoxygenToolkit_briefTag_post = "<++>"
+let g:DoxygenToolkit_briefTag_funcName = "yes"
+let g:DoxygenToolkit_licenseTag = "@copyright CHCNAV"
+let g:DoxygenToolkit_authorName = "genglei"
+let g:DoxygenToolkit_versionString = "v1.0"
+map <unique><silent> <F2> :DoxAuthor<cr>
+map <unique><silent> <F4> :Dox<cr>
+
+"Yggdroot/LeaderF
+let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
+"nnoremap <unique> :Leaderf<CR>
+"nnoremap <unique> :LeaderfBuffer<CR>
+let g:Lf_ShortcutF = '<leader>gf' 
+let g:Lf_ShortcutB = '<leader>gb'
+nnoremap <unique> <leader>gm :LeaderfMru<CR>
+let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>ff :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags")<CR><CR>
+
+" ctags 
+" 正向遍历同名标签
+nmap <Leader>tn :tnext<CR>
+" 反向遍历同名标签
+nmap <Leader>tp :tprevious<CR>
+"到第一个匹配
+nmap <Leader>tf :tfirst<CR>
+"到最后一个匹配
+nmap <Leader>tl :tlast<CR>
+map <silent> <F9> :tnext<cr>
+map <silent> <F10> :tprevious<cr>
+"查找标签栈
+nmap <Leader><Leader>n :tags<cr>
+"跳到最新的标签 tfrist
+"nmap <Leader><Leader>f :tag<cr>
+"在分隔窗口打开
+nmap <Leader><Leader>s :stag<cr>
+"预览函数定义
+nmap <Leader><Leader>p :ptag<cr>
+"列出标签的所有引用
+nmap <Leader><Leader>t :tjump<cr>
+"查看函数原型
+nmap <Leader><Leader>d :psearch<cr>
