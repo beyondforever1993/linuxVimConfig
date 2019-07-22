@@ -412,7 +412,7 @@ nmap <Leader>wo <C-W>o
 nmap <Leader>wf <C-W>f
 nmap <Leader>w_ <C-W>_
 
-nmap <Leader>dd :pwd<CR>
+nmap <Leader>gg :pwd<CR>
 
 if has("gui_running") && has("unix")
     " 禁止光标闪烁
@@ -775,7 +775,8 @@ if has("unix")
     set undodir=~/.undo_history/
     set undofile
     " 保存快捷键
-    map <leader>ss :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
+    " Deprecated
+    "map <leader>ss :mksession! my.vim<cr> :wviminfo! my.viminfo<cr>
     " 恢复快捷键
     map <leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
 endif
@@ -1080,15 +1081,6 @@ if has('unix')
     let g:VCSCommandMapPrefix = '<C-s>'
 endif
 
-nmap <unique> <C-j> :normal @:<CR>
-"quickfix mapping
-"nmap <unique> <C-h>qo :copen<CR>
-"nmap <unique> <C-h>qc :cclose<CR>
-"nmap <unique> <C-h>qj :cnext<CR>
-"nmap <unique> <C-h>qk :cprevious<CR>
-"nmap <unique> <C-h>qf :cfirst<CR>
-"nmap <unique> <C-h>ql :clast<CR>
-
 "Add file search path
 function! SetSearchFilePath(mode)
     if a:mode
@@ -1124,6 +1116,49 @@ let g:choosewin_overlay_enable = 1
 "toggle window
 nmap <Leader>wz :MaximizerToggle!<CR>
 
+"alt keymap
+function! Terminal_MetaMode(mode)
+    set ttimeout
+    if $TMUX != ''
+        set ttimeoutlen=30
+    elseif &ttimeoutlen > 80 || &ttimeoutlen <= 0
+        set ttimeoutlen=80
+    endif
+    if has('nvim') || has('gui_running')
+        return
+    endif
+    function! s:metacode(mode, key)
+        if a:mode == 0
+            exec "set <M-".a:key.">=\e".a:key
+        else
+            exec "set <M-".a:key.">=\e]{0}".a:key."~"
+        endif
+    endfunc
+    for i in range(10)
+        call s:metacode(a:mode, nr2char(char2nr('0') + i))
+    endfor
+    for i in range(26)
+        call s:metacode(a:mode, nr2char(char2nr('a') + i))
+        call s:metacode(a:mode, nr2char(char2nr('A') + i))
+    endfor
+    if a:mode != 0
+        for c in [',', '.', '/', ';', '[', ']', '{', '}']
+            call s:metacode(a:mode, c)
+        endfor
+        for c in ['?', ':', '-', '_']
+            call s:metacode(a:mode, c)
+        endfor
+    else
+        for c in [',', '.', '/', ';', '{', '}']
+            call s:metacode(a:mode, c)
+        endfor
+        for c in ['?', ':', '-', '_']
+            call s:metacode(a:mode, c)
+        endfor
+    endif
+endfunc
+call Terminal_MetaMode(0)
+
 "Doxygen
 let g:DoxygenToolkit_briefTag_pre = "@brief "
 "let g:DoxygenToolkit_briefTag_post = "<++>"
@@ -1142,14 +1177,54 @@ let g:Lf_ShortcutF = '<leader>gf'
 let g:Lf_ShortcutB = '<leader>gb'
 nnoremap <unique> <leader>gm :LeaderfMru<CR>
 let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_WindowHeight = 0.3
 let g:Lf_Gtagslabel = 'native-pygments'
-noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
-noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>ff :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
-noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
-noremap <leader>fg :<C-U><C-R>=printf("Leaderf gtags")<CR><CR>
+
+noremap <unique> <leader>fu :<C-U><C-R>=printf("Leaderf gtags --update")<CR><CR>
+noremap <unique> <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>ff :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>dd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>fs :<C-U><C-R>=printf("Leaderf! gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>ss :<C-U><C-R>=printf("Leaderf! gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>aa :<C-U><C-R>=printf("Leaderf! gtags --by-context --auto-jump --result ctags-x")<CR><CR>
+noremap <unique> <leader>fc :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <unique> <leader>ft :<C-U><C-R>=printf("Leaderf gtags")<CR><CR>
+noremap <unique> <leader>fm :<C-U><C-R>=printf("LeaderfMruCwd")<CR><CR>
+noremap <unique> <leader>fb :<C-U><C-R>=printf("LeaderfBuffer")<CR><CR>
+noremap <unique> <leader>fl :<C-U><C-R>=printf("LeaderfLine")<CR><CR>
+noremap <unique> <leader>fh :<C-U><C-R>=printf("LeaderfFunction!")<CR><CR>
+noremap <unique> <leader>fg :<C-U><C-R>=printf("LeaderfFile")<CR><CR>
+
+noremap <unique> <C-j> :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <unique> <C-k> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+"rg mode
+noremap <unique> <C-H>a :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+noremap <unique> <M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+noremap <unique> <C-M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+"Recal last rg cmd
+noremap <unique> <C-H>c :<C-U><C-R>=printf("LeaderfRgRecall")<CR><CR>
+" search word under cursor, the pattern is treated as regex, and enter normal mode directly
+noremap <unique> <C-H>r :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
+" search word under cursor literally only in current buffer
+noremap <unique> <C-H>f :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+" search word under cursor, the pattern is treated as regex,
+" append the result to previous search results.
+"noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR>
+" search word under cursor literally in all listed buffers
+"noremap <C-D> :<C-U><C-R>=printf("Leaderf! rg -F --all-buffers -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally, don't quit LeaderF after accepting an entry
+"xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR>
+" recall last search. If the result window is closed, reopen it.
+"noremap go :<C-U>Leaderf! rg --recall<CR>
+" search word under cursor in *.h and *.cpp files.
+"noremap <Leader>a :<C-U><C-R>=printf("Leaderf! rg -e %s -g *.h -g *.cpp", expand("<cword>"))<CR>
+" the same as above
+"noremap <Leader>a :<C-U><C-R>=printf("Leaderf! rg -e %s -g *.{h,cpp}", expand("<cword>"))<CR>
+" search word under cursor in cpp and java files.
+"noremap <Leader>b :<C-U><C-R>=printf("Leaderf! rg -e %s -t cpp -t java", expand("<cword>"))<CR>
+" search word under cursor in cpp files, exclude the *.hpp files
+"noremap <Leader>c :<C-U><C-R>=printf("Leaderf! rg -e %s -t cpp -g !*.hpp", expand("<cword>"))<CR>
 
 " ctags 
 " 正向遍历同名标签
@@ -1174,3 +1249,14 @@ nmap <Leader><Leader>p :ptag<cr>
 nmap <Leader><Leader>t :tjump<cr>
 "查看函数原型
 nmap <Leader><Leader>d :psearch<cr>
+
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+
+"quickfix 
+noremap <unique> <C-n> :cnext<cr>
+noremap <unique> <C-p> :cprevious<cr>
+noremap <unique> <C-e> :clast<cr>
+noremap <unique> <C-h> :cfirst<cr>
+noremap <unique> <C-a> :copen<cr>
+noremap <unique> <C-y> :cclose<cr>
