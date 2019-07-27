@@ -14,89 +14,75 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-if has("unix")
-    set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#begin()
-elseif has("win32") || has("win64")
-    set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-    call vundle#begin('$HOME/vimfiles/bundle/')
-endif
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-if has("win32") || has("win64")
-    "Plugin 'myusuf3/numbers.vim'
-endif
+"vim-plug
+call plug#begin()
 """"""""""""""""""""""file explorer""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""coloschemes""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-Plugin 'google/vim-colorscheme-primary'
-Plugin 'tomasr/molokai'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'vim-scripts/tabula.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'hukl/Smyck-Color-Scheme'
-"Plugin 'flazz/vim-colorschemes'
-Plugin 'adelarsq/vim-grimmjow'
-Plugin 'lifepillar/vim-solarized8'
-Plugin 'lifepillar/vim-wwdc16-theme'
-Plugin 'joshdick/onedark.vim'
+Plug 'google/vim-colorscheme-primary'
+Plug 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vim-scripts/tabula.vim'
+Plug 'morhetz/gruvbox'
+Plug 'hukl/Smyck-Color-Scheme'
+"Plug 'flazz/vim-colorschemes'
+Plug 'adelarsq/vim-grimmjow'
+Plug 'lifepillar/vim-solarized8'
+Plug 'lifepillar/vim-wwdc16-theme'
+Plug 'joshdick/onedark.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "For web-developer, not used now
-"Plugin 'mattn/emmet-vim'
+"Plug 'mattn/emmet-vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "windows operation
-Plugin 'uguu-org/vim-matrix-screensaver'
-Plugin 'szw/vim-maximizer'
+Plug 'uguu-org/vim-matrix-screensaver'
+Plug 'szw/vim-maximizer'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "multiple cursor
-Plugin 'terryma/vim-multiple-cursors'
+"Plug 'terryma/vim-multiple-cursors'
 "Visualization of code indentation
-"Plugin 'nathanaelkane/vim-indent-guides'
+"Plug 'nathanaelkane/vim-indent-guides'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Switch between .c and .h
-Plugin 'vim-scripts/a.vim'
-Plugin 'derekwyatt/vim-fswitch'
+Plug 'vim-scripts/a.vim'
+Plug 'derekwyatt/vim-fswitch'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Control windows
-Plugin 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mark sign
-Plugin 'kshenoy/vim-signature'
-"Plugin 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
+Plug 'kshenoy/vim-signature'
+"Plug 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -104,28 +90,28 @@ Plugin 'kshenoy/vim-signature'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File search tools
 "Deprecated
-"Plugin 'yegappan/grep'
+"Plug 'yegappan/grep'
 "Deprecated
-"Plugin 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim'
 "Deprecated
-"Plugin 'dyng/ctrlsf.vim'
+"Plug 'dyng/ctrlsf.vim'
 "Deprecated
-"Plugin 'rking/ag.vim'
+"Plug 'rking/ag.vim'
 "Deprecated
-"Plugin 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
 "Deprecated
-"Plugin 'Shougo/unite.vim'
-Plugin 'nelstrom/vim-qargs'
+"Plug 'Shougo/unite.vim'
+Plug 'nelstrom/vim-qargs'
 if has('python') || has('python3')
-    Plugin 'Yggdroot/LeaderF'
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     "Deprecated
-    "Plugin 'FelikZ/ctrlp-py-matcher'
+    "Plug 'FelikZ/ctrlp-py-matcher'
 endif
 if has("unix")
     "Deprecated
-    "Plugin 'wincent/command-t'
+    "Plug 'wincent/command-t'
     "terminal finder tool
-    Plugin 'junegunn/fzf'
+    "Plug 'junegunn/fzf'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -133,7 +119,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Code comments
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -141,90 +127,63 @@ Plugin 'scrooloose/nerdcommenter'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Programming
 "function,variables,defitions indexing
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
+
+Plug 'skywind3000/asyncrun.vim'
+
+Plug 'sbdchd/neoformat'
 
 if has("unix")
     "Auto-completion, real-time compilation
-    Plugin 'Valloric/YouCompleteMe'
-    "Plugin 'rdnetto/YCM-Generator'
+    Plug 'Valloric/YouCompleteMe'
+    "Plug 'rdnetto/YCM-Generator'
     "Grammar check
-    Plugin 'scrooloose/syntastic'
+    Plug 'w0rp/ale'
+    "Plug 'neomake/neomake'
+    "Plug 'scrooloose/syntastic'
     "snippets
-    Plugin 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips'
 endif
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "Text obejct quick control
-Plugin 'gcmt/wildfire.vim'
+Plug 'gcmt/wildfire.vim'
 
 "Table, graphics operation
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'vim-scripts/DrawIt'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'vim-scripts/DrawIt'
 
 if has("unix")
     "Status bar
-    Plugin 'powerline/fonts'
-    Plugin 'bling/vim-airline'
+    Plug 'powerline/fonts'
+    Plug 'bling/vim-airline'
 endif
 
 "Welcome Screen
-Plugin 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 "calendar
-Plugin 'itchyny/calendar.vim'
+Plug 'itchyny/calendar.vim'
 
 "mouse motion
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 "Column alignment
-Plugin 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 "Text filtering and alignment
-Plugin 'godlygeek/tabular'
-
-if has("unix")
-    "markdown
-    Plugin 'suan/vim-instant-markdown'
-endif
+Plug 'godlygeek/tabular'
 
 "git integrated, not used 
-"Plugin 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 
 "quoting/parenthesizing tool
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
-if has("unix")
-    "Local plugins
-    "Plugin 'file:///home/genglei/.vim/bundle/indexer', {'pinned': 1}
-    "Plugin 'file:///home/genglei/.vim/bundle/dfrank_util',{'pinned': 1}
-    "Plugin 'file:///home/genglei/.vim/bundle/vimprj',{'pinned': 1}
-    Plugin 'file:///home/genglei/.vim/bundle/gundo',{'pinned': 1}
-    Plugin 'file:///home/genglei/.vim/bundle/SingleCompiler',{'pinned': 1}
-    Plugin 'file:///home/genglei/.vim/bundle/vcscommand-1.99.47',{'pinned': 1}
-    "Plugin 'file:///home/genglei/.vim/bundle/CSApprox',{'pinned': 1}
-    " All of your Plugins must be added before the following line
-endif
+call plug#end()
 
-if has("unix")
-    call vundle#end()            " required
-elseif has("win32") || has("win64")
-    call vundle#end()
-endif
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-
 
 " An example for a vimrc file.
 "
@@ -341,8 +300,8 @@ endif
 
 
 "定义快捷键到行首和行尾
-nmap <Leader>lb 0
-nmap <Leader>le $
+"nmap <Leader>lb 0
+"nmap <Leader>le $
 "设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
 "设置快捷键将系统剪贴板内容粘贴至 vim
@@ -556,9 +515,6 @@ set expandtab
 "autoload_cscope.vim close macros
 let g:autocscope_menus = 0
 
-" " mouse mode
-set mouse=a
-"
 " " highlight current line or column
 set cursorline
 set cursorcolumn
@@ -579,6 +535,17 @@ if has("unix")
                 \ 'ctrlsf': 1
                 \}
 
+    "let g:ycm_filetype_whitelist = { 
+    "            \ "c":1,
+    "            \ "h":1,
+    "            \ "cpp":1, 
+    "            \ "objc":1,
+    "            \ "sh":1,
+    "            \ "zsh":1,
+    "            \ "zimbu":1,
+    "            \ }
+
+    let g:ycm_use_clangd = 0
     "YouCompleteMe
     "let g:ycm_extra_conf_globlist = ['/home/genglei/*']
     let g:ycm_key_list_select_completion=['<TAB>', '<Down>', '<C-j>', '<C-n>']
@@ -611,7 +578,54 @@ if has("unix")
     let g:ycm_seed_identifiers_with_syntax=1
     map <silent> <F5> :YcmForceCompileAndDiagnostics<cr>
     map <silent> <F6> :YcmDiags<cr>
+
+    let g:ycm_add_preview_to_completeopt = 0
+    let g:ycm_show_diagnostics_ui = 0
+    let g:ycm_server_log_level = 'info'
+    let g:ycm_min_num_identifier_candidate_chars = 2
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    let g:ycm_complete_in_strings=1
+    let g:ycm_key_invoke_completion = '<leader>jj'
+    set completeopt=menu,menuone
+    noremap <leader>jj <NOP>
+    let g:ycm_semantic_triggers =  {
+                \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+                \ 'cs,lua,javascript': ['re!\w{2}'],
+                \ }
 endif
+
+"ALE 
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+let g:ale_linters = {
+\   'c++': ['clang', 'gcc', 'cppcheck'],
+\   'c': ['clang', 'gcc', 'clangd', 'cppcheck'],
+\   'h': ['clang', 'gcc', 'clangd', 'cppcheck'],
+\   'python': ['pylint'],
+\}
+
+map <silent> <F7> :ALEDetail<cr>
+"let g:ale_sign_error = "\ue009\ue009"
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
+
 
 "NERDTree
 let g:NERDTreeWinPos="right"
@@ -647,7 +661,7 @@ nmap <silent> <leader>nn :NERDTreeToggle<cr>
 "set ttimeoutlen=50
 
 "TagBar
-nmap <silent> <leader>tb :TagbarToggle<cr>
+"nmap <silent> <leader>tb :TagbarToggle<cr>
 nmap <silent> <leader>hh :TagbarToggle<cr>
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
 let tagbar_left=1 
@@ -760,7 +774,6 @@ if has("unix")
 endif
 
 
-
 if has("unix")
     "syntastic 
     let g:syntastic_error_symbol = "✗"
@@ -791,28 +804,28 @@ vmap <C-SPACE> <Plug>(wildfire-water)
 nnoremap <Leader>ud :GundoToggle<CR>
 
 
-if has("unix")
-    "SingleCompiler
-    nnoremap <Leader>sc :SCCompile<cr>
-    nnoremap <Leader>sr :SCCompileRun<cr>
-    let g:SingleCompile_showquickfixiferror = 1
-endif
+"if has("unix")
+"    "SingleCompiler
+"    nnoremap <Leader>sc :SCCompile<cr>
+"    nnoremap <Leader>sr :SCCompileRun<cr>
+"    let g:SingleCompile_showquickfixiferror = 1
+"endif
 
-if has("unix")
-    "Dictionary
-    function! Mydict()
-        let expl=system('sdcv -n ' .
-                    \  expand("<cword>"))
-        windo if
-                    \ expand("%")=="diCt-tmp" |
-                    \ q!|endif
-        25vsp diCt-tmp
-        setlocal buftype=nofile bufhidden=hide noswapfile
-        1s/^/\=expl/
-        1
-    endfunction
-    nmap <Leader>f :call Mydict()<CR>
-endif
+"if has("unix")
+"    "Dictionary
+"    function! Mydict()
+"        let expl=system('sdcv -n ' .
+"                    \  expand("<cword>"))
+"        windo if
+"                    \ expand("%")=="diCt-tmp" |
+"                    \ q!|endif
+"        25vsp diCt-tmp
+"        setlocal buftype=nofile bufhidden=hide noswapfile
+"        1s/^/\=expl/
+"        1
+"    endfunction
+"    nmap <Leader>f :call Mydict()<CR>
+"endif
 
 "Search system include files
 if has("unix")
@@ -878,41 +891,41 @@ nmap <C-m>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-m>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 nmap <C-m>a :cs find a <C-R>=expand("<cword>")<CR><CR>	
 
-nmap <C-\>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-\>i :scs find i <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-\>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
-nmap <C-\>a :scs find a <C-R>=expand("<cword>")<CR><CR>	
-
-nmap <C-\><C-\>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\><C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\><C-\>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\><C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\><C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\><C-\>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-\><C-\>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
-nmap <C-\><C-\>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
-nmap <C-\><C-\>a :vert scs find a <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
+"nmap <C-\>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
+"nmap <C-\>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
+"nmap <C-\>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
+"nmap <C-\>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
+"nmap <C-\>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+"nmap <C-\>i :scs find i <C-R>=expand("<cfile>")<CR><CR>	
+"nmap <C-\>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+"nmap <C-\>a :scs find a <C-R>=expand("<cword>")<CR><CR>	
+"
+"nmap <C-\><C-\>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\><C-\>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\><C-\>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\><C-\>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\><C-\>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\><C-\>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+"nmap <C-\><C-\>i :vert scs find i <C-R>=expand("<cfile>")<CR><CR>	
+"nmap <C-\><C-\>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+"nmap <C-\><C-\>a :vert scs find a <C-R>=expand("<cword>")<CR><CR>
 
 nmap <C-m>q :set cscopequickfix=s-,c-,d-,i-,t-,e-,a-<CR>
 nmap <C-m>Q :set cscopequickfix=<CR>
 
 
 "multiple cursors
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_key='g<C-d>'
-let g:multi_cursor_start_word_key='<C-d>'
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-u>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-if has("gui_running")
-    set selection=inclusive
-endif
+"let g:multi_cursor_use_default_mapping=0
+"let g:multi_cursor_start_key='g<C-d>'
+"let g:multi_cursor_start_word_key='<C-d>'
+"let g:multi_cursor_next_key='<C-d>'
+"let g:multi_cursor_prev_key='<C-u>'
+"let g:multi_cursor_skip_key='<C-x>'
+"let g:multi_cursor_quit_key='<Esc>'
+"if has("gui_running")
+"    set selection=inclusive
+"endif
 
 "Deprecated
 "if has("unix") || has('win32') || has('win64')
@@ -1092,12 +1105,31 @@ endfunction
 nmap <unique> <C-x>p :call SetSearchFilePath(1)<CR>
 nmap <unique> <C-x>P :call SetSearchFilePath(0)<CR>
 
+"System Clipboard
+function! SystemClipboard(mode)
+    if a:mode
+        let @+ = expand('<cWORD>')
+        let @* = expand('<cWORD>')
+    else
+        let @+ = expand('<cword>')
+        let @* = expand('<cword>')
+    endif
+endfunction
+nmap <unique> gy :call SystemClipboard(0)<CR>
+nmap <unique> gY :call SystemClipboard(1)<CR>
+
 "Copy current filename
-nmap <unique> <C-x>g :let @+ = expand("%:t")<CR>
-nmap <unique> <C-x>G :let @+ = expand("%")<CR>
-nmap <unique> g<C-x> :let @+ = expand("%:p")<CR>
-nmap <unique> gy :let @+ = expand('<cword>')<CR>
-nmap <unique> gY :let @+ = expand('<cWORD>')<CR>
+function! CopyCurrentFilename(mode)
+    if a:mode
+        let @+ = expand("%:p")
+        let @* = expand("%:p")
+    else
+        let @+ = expand("%:t")
+        let @* = expand("%:t")
+    endif
+endfunction
+nmap <unique> <C-x>g :call CopyCurrentFilename(0)<CR>
+nmap <unique> <C-x>G :call CopyCurrentFilename(1)<CR>
 
 "vim7.4 patch 1770 support terminal true color
 if v:version >= 800 || has('patch-7.4.1770')
@@ -1173,22 +1205,22 @@ map <unique><silent> <F4> :Dox<cr>
 let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
 "nnoremap <unique> :Leaderf<CR>
 "nnoremap <unique> :LeaderfBuffer<CR>
-let g:Lf_ShortcutF = '<leader>gf' 
-let g:Lf_ShortcutB = '<leader>gb'
+"let g:Lf_ShortcutF = '<leader>gf' 
+"let g:Lf_ShortcutB = '<leader>gb'
 nnoremap <unique> <leader>gm :LeaderfMru<CR>
 let g:Lf_GtagsAutoGenerate = 1
 let g:Lf_WindowHeight = 0.3
 let g:Lf_Gtagslabel = 'native-pygments'
 
 noremap <unique> <leader>fu :<C-U><C-R>=printf("Leaderf gtags --update")<CR><CR>
-noremap <unique> <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <unique> <leader>ff :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <unique> <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <unique> <leader>dd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <unique> <leader>fs :<C-U><C-R>=printf("Leaderf! gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <unique> <leader>ss :<C-U><C-R>=printf("Leaderf! gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
-noremap <unique> <leader>aa :<C-U><C-R>=printf("Leaderf! gtags --by-context --auto-jump --result ctags-x")<CR><CR>
-noremap <unique> <leader>fc :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <unique> <leader>fr :<C-U><C-R>=printf("Leaderf gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>ff :<C-U><C-R>=printf("Leaderf gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>fd :<C-U><C-R>=printf("Leaderf gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>dd :<C-U><C-R>=printf("Leaderf gtags -d %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>fs :<C-U><C-R>=printf("Leaderf gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>ss :<C-U><C-R>=printf("Leaderf gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>aa :<C-U><C-R>=printf("Leaderf gtags --by-context --auto-jump --result ctags-x")<CR><CR>
+noremap <unique> <leader>fc :<C-U><C-R>=printf("Leaderf gtags --recall %s", "")<CR><CR>
 noremap <unique> <leader>ft :<C-U><C-R>=printf("Leaderf gtags")<CR><CR>
 noremap <unique> <leader>fm :<C-U><C-R>=printf("LeaderfMruCwd")<CR><CR>
 noremap <unique> <leader>fb :<C-U><C-R>=printf("LeaderfBuffer")<CR><CR>
@@ -1199,9 +1231,9 @@ noremap <unique> <leader>fg :<C-U><C-R>=printf("LeaderfFile")<CR><CR>
 noremap <unique> <C-j> :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <unique> <C-k> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "rg mode
-noremap <unique> <C-H>a :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
-noremap <unique> <M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
-noremap <unique> <C-M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+noremap <unique> <leader>a :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+"noremap <unique> <M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+"noremap <unique> <C-M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
 "Recal last rg cmd
 noremap <unique> <C-H>c :<C-U><C-R>=printf("LeaderfRgRecall")<CR><CR>
 " search word under cursor, the pattern is treated as regex, and enter normal mode directly
@@ -1226,37 +1258,38 @@ noremap <unique> <C-H>f :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %
 " search word under cursor in cpp files, exclude the *.hpp files
 "noremap <Leader>c :<C-U><C-R>=printf("Leaderf! rg -e %s -t cpp -g !*.hpp", expand("<cword>"))<CR>
 
+"Deprecated
 " ctags 
 " 正向遍历同名标签
-nmap <Leader>tn :tnext<CR>
+"nmap <Leader>tn :tnext<CR>
 " 反向遍历同名标签
-nmap <Leader>tp :tprevious<CR>
+"nmap <Leader>tp :tprevious<CR>
 "到第一个匹配
-nmap <Leader>tf :tfirst<CR>
+"nmap <Leader>tf :tfirst<CR>
 "到最后一个匹配
-nmap <Leader>tl :tlast<CR>
-map <silent> <F9> :tnext<cr>
-map <silent> <F10> :tprevious<cr>
+"nmap <Leader>tl :tlast<CR>
+"map <silent> <F9> :tnext<cr>
+"map <silent> <F10> :tprevious<cr>
 "查找标签栈
-nmap <Leader><Leader>n :tags<cr>
+"nmap <Leader><Leader>n :tags<cr>
 "跳到最新的标签 tfrist
 "nmap <Leader><Leader>f :tag<cr>
 "在分隔窗口打开
-nmap <Leader><Leader>s :stag<cr>
+"nmap <Leader><Leader>s :stag<cr>
 "预览函数定义
-nmap <Leader><Leader>p :ptag<cr>
+"nmap <Leader><Leader>p :ptag<cr>
 "列出标签的所有引用
-nmap <Leader><Leader>t :tjump<cr>
+"nmap <Leader><Leader>t :tjump<cr>
 "查看函数原型
-nmap <Leader><Leader>d :psearch<cr>
+"nmap <Leader><Leader>d :psearch<cr>
 
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
 "quickfix 
-noremap <unique> <C-n> :cnext<cr>
-noremap <unique> <C-p> :cprevious<cr>
-noremap <unique> <C-e> :clast<cr>
-noremap <unique> <C-h> :cfirst<cr>
-noremap <unique> <C-a> :copen<cr>
-noremap <unique> <C-y> :cclose<cr>
+"noremap <unique> <C-n> :cnext<cr>
+"noremap <unique> <C-p> :cprevious<cr>
+"noremap <unique> <C-e> :clast<cr>
+"noremap <unique> <C-h> :cfirst<cr>
+"noremap <unique> <C-a> :copen<cr>
+"noremap <unique> <C-y> :cclose<cr>
