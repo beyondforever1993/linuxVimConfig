@@ -132,6 +132,7 @@ Plug 'majutsushi/tagbar'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'sbdchd/neoformat'
+Plug 'Chiel92/vim-autoformat'
 
 if has("unix")
     "Auto-completion, real-time compilation
@@ -371,7 +372,7 @@ nmap <Leader>wo <C-W>o
 nmap <Leader>wf <C-W>f
 nmap <Leader>w_ <C-W>_
 
-nmap <Leader>gg :pwd<CR>
+nmap <Leader>cd :pwd<CR>
 
 if has("gui_running") && has("unix")
     " 禁止光标闪烁
@@ -606,8 +607,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
-let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 let g:ale_linters = {
@@ -617,7 +616,6 @@ let g:ale_linters = {
 \   'python': ['pylint'],
 \}
 
-map <silent> <F7> :ALEDetail<cr>
 "let g:ale_sign_error = "\ue009\ue009"
 hi! clear SpellBad
 hi! clear SpellCap
@@ -626,6 +624,55 @@ hi! SpellBad gui=undercurl guisp=red
 hi! SpellCap gui=undercurl guisp=blue
 hi! SpellRare gui=undercurl guisp=magenta
 
+function! ALE_custom_made()
+    let l:find_cmd_0 = "find " . getcwd() . " "
+    let l:find_cmd_1 = " -name \"*\" -type d "
+    let l:find_cmd_2 = " -not -path \'**/.git/**\' "
+    let l:find_cmd_3 = " -not -path \'**/.svn/**\' "
+    let l:find_cmd_4 = " -not -path \'**/objs/**\' "
+
+    let l:project_macros = ' -D__linux -DLIBUV_USED  '
+    "let l:system_headfile_dir = ' -I /usr/include '
+    let l:system_headfile_dir = ''
+    let l:gcc_c_options = '-Wall -Wextra -O2 -std=gnu99'
+    let l:gcc_cpp_options = '-Wall -Wextra -O2 -std=c++14'
+    let l:clang_c_options = '-Wall -Wextra -O2 -std=gnu99'
+
+    let l:cmd_output = systemlist(l:find_cmd_0 . l:find_cmd_1 . l:find_cmd_2 . l:find_cmd_3 . l:find_cmd_4)
+    if exists("g:ale_c_gcc_options")
+        for n in cmd_output
+            "let g:ale_c_gcc_options = g:ale_c_gcc_options .“' -I ' . n
+            let l:gcc_c_options = l:gcc_c_options . ' -I ' . n
+        endfor
+    endif
+    if exists("g:ale_c_gcc_options")
+        for n in cmd_output
+            "let g:ale_cpp_gcc_options = g:ale_cpp_gcc_options .“' -I ' . n
+            let l:gcc_cpp_options = l:gcc_cpp_options . ' -I ' . n
+        endfor
+    endif
+    if exists("g:ale_c_clang_options")
+        for n in cmd_output
+            "let g:ale_c_clang_options = g:ale_c_clang_options . ' -I ' . n
+            let l:clang_c_options = l:clang_c_options . ' -I ' . n
+        endfor
+    endif
+	"for n in cmd_output
+	"  echomsg "-I " n
+	"endfor
+
+    let g:ale_c_gcc_options = l:project_macros . l:system_headfile_dir . l:gcc_c_options
+    let g:ale_cpp_gcc_options = l:project_macros . l:system_headfile_dir . l:gcc_cpp_options
+    let g:ale_c_clang_options = l:project_macros . l:system_headfile_dir . l:clang_c_options
+endfunction
+
+command! -nargs=0 ALECustom call ALE_custom_made()
+
+noremap <unique> <silent> <F7> :ALEDetail<cr>
+noremap <unique> <silent> <leader>gg :ALEDetail<cr>
+noremap <unique> <silent> <leader>gt :ALEToggle<cr>
+noremap <unique> <silent> <leader>gl :ALELint<cr>
+noremap <unique> <silent> <leader>gc :ALECustom<cr>
 
 "NERDTree
 let g:NERDTreeWinPos="right"
@@ -1231,15 +1278,15 @@ noremap <unique> <leader>fg :<C-U><C-R>=printf("LeaderfFile")<CR><CR>
 noremap <unique> <C-j> :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <unique> <C-k> :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 "rg mode
-noremap <unique> <leader>a :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
+noremap <unique> <leader>rg :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
 "noremap <unique> <M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
 "noremap <unique> <C-M-h> :<C-U><C-R>=printf("Leaderf rg")<CR><CR>
 "Recal last rg cmd
-noremap <unique> <C-H>c :<C-U><C-R>=printf("LeaderfRgRecall")<CR><CR>
+noremap <unique> <leader>rc :<C-U><C-R>=printf("LeaderfRgRecall")<CR><CR>
 " search word under cursor, the pattern is treated as regex, and enter normal mode directly
-noremap <unique> <C-H>r :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>rr :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
 " search word under cursor literally only in current buffer
-noremap <unique> <C-H>f :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+noremap <unique> <leader>rb :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR><CR>
 " search word under cursor, the pattern is treated as regex,
 " append the result to previous search results.
 "noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR>
@@ -1293,3 +1340,22 @@ let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 "noremap <unique> <C-h> :cfirst<cr>
 "noremap <unique> <C-a> :copen<cr>
 "noremap <unique> <C-y> :cclose<cr>
+"
+
+"AutoFormater
+noremap <unique> <leader>af :Autoformat<CR>
+
+"gtags
+let Gtags_Auto_Update = 1
+let Gtags_No_Auto_Jump = 1
+let Gtags_Close_When_Single = 1
+
+"gtags-cscope
+" To ignore letter case when searching:
+let GtagsCscope_Ignore_Case = 1
+" To use absolute path name:
+" let GtagsCscope_Absolute_Path = 1
+" To deterring interruption:
+let GtagsCscope_Keep_Alive = 1
+" If you hope auto loading:
+let GtagsCscope_Auto_Load = 1
