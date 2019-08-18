@@ -1098,6 +1098,7 @@ map <C-x>H :call HighighlightColumn(0)<CR>
 
 map gz :display<CR>
 "Align
+xmap ga <Plug>(EasyAlign)
 vmap g<Space> :'<,'>EasyAlign\<CR>
 vmap g1 :'<,'>EasyAlign2\<CR>
 vmap g= :'<,'>EasyAlign=<CR>
@@ -1332,15 +1333,16 @@ noremap <unique> <leader>rb :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer 
 
 let $GTAGSLABEL = 'native-pygments'
 let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+let $GTAGSLIBPATH = './:/usr/include'
 
 "quickfix 
-"noremap <unique> <C-n> :cnext<cr>
-"noremap <unique> <C-p> :cprevious<cr>
-"noremap <unique> <C-e> :clast<cr>
-"noremap <unique> <C-h> :cfirst<cr>
-"noremap <unique> <C-a> :copen<cr>
-"noremap <unique> <C-y> :cclose<cr>
-"
+noremap <unique> <C-n> :cnext<cr>
+noremap <unique> <C-p> :cprevious<cr>
+noremap <unique> <C-e> :clast<cr>
+noremap <unique> <C-h> :cfirst<cr>
+noremap <unique> <C-a> :copen<cr>
+noremap <unique> <C-y> :cclose<cr>
+
 
 "AutoFormater
 noremap <unique> <leader>af :Autoformat<CR>
