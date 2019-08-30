@@ -36,6 +36,7 @@ Plug 'adelarsq/vim-grimmjow'
 Plug 'lifepillar/vim-solarized8'
 Plug 'lifepillar/vim-wwdc16-theme'
 Plug 'joshdick/onedark.vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -133,6 +134,12 @@ Plug 'skywind3000/asyncrun.vim'
 
 Plug 'sbdchd/neoformat'
 Plug 'Chiel92/vim-autoformat'
+
+" cpp highlight
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" pair highlight
+Plug 'luochen1990/rainbow'
 
 if has("unix")
     "Auto-completion, real-time compilation
@@ -388,8 +395,9 @@ if has("gui_running") && has("unix")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"mark-2.8.5
+"mark-3.1.0
 "Install :so %
+"Uninstall :RmVimball mark
 "testtermcolor :runtime syntax/colortest.vim
 "MarkPalette extended
 function! SourceMarkHighlight()
@@ -426,6 +434,8 @@ function! SourceMarkHighlight()
 endfunction
 
 
+nmap n <Plug>MarkSearchOrCurNext
+nmap N <Plug>MarkSearchOrCurPrev
 nmap <unique> <C-m>n :MarkClear<CR>
 nmap <unique> <C-m>m :Marks<CR>
 nmap <unique> <C-m>1 <Plug>MarkSearchGroup1Next
@@ -1361,3 +1371,6 @@ let GtagsCscope_Ignore_Case = 1
 let GtagsCscope_Keep_Alive = 1
 " If you hope auto loading:
 let GtagsCscope_Auto_Load = 1
+
+"rainbow
+let g:rainbow_active = 0
