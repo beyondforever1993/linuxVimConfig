@@ -83,10 +83,6 @@ Plug 't9md/vim-choosewin'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mark sign
 Plug 'kshenoy/vim-signature'
-"Plug 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File search tools
@@ -105,14 +101,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-qargs'
 if has('python') || has('python3')
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-    "Deprecated
-    "Plug 'FelikZ/ctrlp-py-matcher'
-endif
-if has("unix")
-    "Deprecated
-    "Plug 'wincent/command-t'
-    "terminal finder tool
-    "Plug 'junegunn/fzf'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -141,7 +129,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " pair highlight
 Plug 'luochen1990/rainbow'
 
-if has("unix")
+if has("unix") || has("mac")
     "Auto-completion, real-time compilation
     Plug 'Valloric/YouCompleteMe'
     "Plug 'rdnetto/YCM-Generator'
@@ -164,7 +152,7 @@ Plug 'gcmt/wildfire.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-scripts/DrawIt'
 
-if has("unix")
+if has("unix") || has("mac")
     "Status bar
     Plug 'powerline/fonts'
     Plug 'bling/vim-airline'
@@ -300,7 +288,7 @@ filetype on
 filetype plugin on
 
 "man cmd
-if has("unix")
+if has("unix") || has("mac")
     source $VIMRUNTIME/ftplugin/man.vim
     nmap <Leader>man :Man 3 <cword><CR>
     nmap <Leader>man2 :Man 2 <cword><CR>
@@ -434,8 +422,8 @@ function! SourceMarkHighlight()
 endfunction
 
 
-nmap n <Plug>MarkSearchOrCurNext
-nmap N <Plug>MarkSearchOrCurPrev
+"nmap n <Plug>MarkSearchOrCurNext
+"nmap N <Plug>MarkSearchOrCurPrev
 nmap <unique> <C-m>n :MarkClear<CR>
 nmap <unique> <C-m>m :Marks<CR>
 nmap <unique> <C-m>1 <Plug>MarkSearchGroup1Next
@@ -458,7 +446,7 @@ nmap <unique> <C-m>9 <Plug>MarkSearchGroup9Next
 nmap <unique> <C-x>9 <Plug>MarkSearchGroup9Prev
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has("unix")
+if has("unix") || has("mac")
     " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
     fun! ToggleFullscreen()
         call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
@@ -530,7 +518,7 @@ let g:autocscope_menus = 0
 set cursorline
 set cursorcolumn
 
-if has("unix")
+if has("unix") || has("mac")
     "resovled when use ctrlsf, youcompleteme crash
     let g:ycm_filetype_blacklist = {
                 \ 'tagbar' : 1,
@@ -556,7 +544,7 @@ if has("unix")
     "            \ "zimbu":1,
     "            \ }
 
-    let g:ycm_use_clangd = 0
+    let g:ycm_use_clangd = 1
     "YouCompleteMe
     "let g:ycm_extra_conf_globlist = ['/home/genglei/*']
     let g:ycm_key_list_select_completion=['<TAB>', '<Down>', '<C-j>', '<C-n>']
@@ -753,7 +741,7 @@ endif
 set encoding=utf-8
 if has('win32') || has('win64')
     set fileencoding=chinese
-elseif has('unix')
+elseif has('unix') || has("mac")
     set fileencoding=utf-8
 endif
 set fencs=utf-8,gbk,GB18030,ucs-bom,default,latin1
@@ -822,7 +810,7 @@ nmap <Leader>sch :AS<CR>
 
 let NERD_c_alt_style=1
 
-if has("unix")
+if has("unix") || has("mac")
     " 设置插件 indexer 调用 ctags 的参数
     " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
     " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
@@ -831,7 +819,7 @@ if has("unix")
 endif
 
 
-if has("unix")
+if has("unix") || has("mac")
     "syntastic 
     let g:syntastic_error_symbol = "✗"
     let g:syntastic_warning_symbol = "⚠"
@@ -885,7 +873,7 @@ nnoremap <Leader>ud :GundoToggle<CR>
 "endif
 
 "Search system include files
-if has("unix")
+if has("unix") || has("mac")
     set path+=/usr/include/**
 endif
 
@@ -1025,7 +1013,7 @@ function! Replace(projectrange, confirm, wholeword, replace)
             execute 'Qargs | argdo %s/' . search . '/' . replace . '/' . flag . '| update'
         endif
     else
-        if has("unix")
+        if has("unix") || has("mac")
             execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
         elseif has("win32") || has("win64")
             "Has some thing wrong, Ctrl-C and Esc replace string with null string.
@@ -1260,6 +1248,7 @@ map <unique><silent> <F2> :DoxAuthor<cr>
 map <unique><silent> <F4> :Dox<cr>
 
 "Yggdroot/LeaderF
+let g:Lf_ShowDevIcons = 0
 let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
 "nnoremap <unique> :Leaderf<CR>
 "nnoremap <unique> :LeaderfBuffer<CR>
