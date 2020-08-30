@@ -83,6 +83,10 @@ Plug 't9md/vim-choosewin'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mark sign
 Plug 'kshenoy/vim-signature'
+"Plug 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File search tools
@@ -101,6 +105,14 @@ Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-qargs'
 if has('python') || has('python3')
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    "Deprecated
+    "Plug 'FelikZ/ctrlp-py-matcher'
+endif
+if has("linux") || has("mac")
+    "Deprecated
+    "Plug 'wincent/command-t'
+    "terminal finder tool
+    "Plug 'junegunn/fzf'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -129,7 +141,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 " pair highlight
 Plug 'luochen1990/rainbow'
 
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     "Auto-completion, real-time compilation
     Plug 'Valloric/YouCompleteMe'
     "Plug 'rdnetto/YCM-Generator'
@@ -152,7 +164,7 @@ Plug 'gcmt/wildfire.vim'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'vim-scripts/DrawIt'
 
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     "Status bar
     Plug 'powerline/fonts'
     Plug 'bling/vim-airline'
@@ -288,7 +300,7 @@ filetype on
 filetype plugin on
 
 "man cmd
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     source $VIMRUNTIME/ftplugin/man.vim
     nmap <Leader>man :Man 3 <cword><CR>
     nmap <Leader>man2 :Man 2 <cword><CR>
@@ -369,7 +381,7 @@ nmap <Leader>w_ <C-W>_
 
 nmap <Leader>cd :pwd<CR>
 
-if has("gui_running") && has("unix")
+if has("gui_running") && has("linux")
     " 禁止光标闪烁
     "set gcr=a:block-blinkon0
     " " 禁止显示滚动条
@@ -446,7 +458,7 @@ nmap <unique> <C-m>9 <Plug>MarkSearchGroup9Next
 nmap <unique> <C-x>9 <Plug>MarkSearchGroup9Prev
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     " 将外部命令 wmctrl 控制窗口最大化的命令行参数封装成一个 vim 的函数
     fun! ToggleFullscreen()
         call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")
@@ -518,7 +530,7 @@ let g:autocscope_menus = 0
 set cursorline
 set cursorcolumn
 
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     "resovled when use ctrlsf, youcompleteme crash
     let g:ycm_filetype_blacklist = {
                 \ 'tagbar' : 1,
@@ -733,7 +745,7 @@ if !has('gui_running')
     set termencoding=utf-8  
 endif
 "auto detect fileformats
-"if has('unix')
+"if has('linux')
 "    set fileformats=unix  
 "elseif has('win32') || has('win64')
 "    set fileformats=dos
@@ -741,15 +753,17 @@ endif
 set encoding=utf-8
 if has('win32') || has('win64')
     set fileencoding=chinese
-elseif has('unix') || has("mac")
+elseif has('linux') || has("mac")
     set fileencoding=utf-8
 endif
 set fencs=utf-8,gbk,GB18030,ucs-bom,default,latin1
 if has("gui_running")
-    if has('unix')
+    if has('linux')
         set guifont=YaHei\ Consolas\ Hybrid\ 11.5
     elseif has('win32') || has('win64')
         set guifont=YaHei_Consolas_Hybrid:h11.5
+    elseif has('mac')
+        set guifont=Monaco:h14
     endif
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
@@ -783,7 +797,7 @@ nmap <Leader>sch :AS<CR>
 
 "Deprecated
 "ctrlsf.vim
-"if has('unix')
+"if has('linux')
 "    nnoremap <Leader>sf :CtrlSF<CR>
 "    let g:ctrlsf_ackprg = '/usr/bin/ag'
 "    let g:ctrlsf_extra_backend_args = {
@@ -794,7 +808,7 @@ nmap <Leader>sch :AS<CR>
 "Deprecated
 "Ag.vim
 "nnoremap <Leader>aa :Ag<CR>
-"if has("unix")
+"if has("linux")
 "    let g:ag_prg='ag --vimgrep --smart-case --ignore "cscope.*" --ignore "*.o"'
 "endif
 
@@ -810,7 +824,7 @@ nmap <Leader>sch :AS<CR>
 
 let NERD_c_alt_style=1
 
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     " 设置插件 indexer 调用 ctags 的参数
     " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
     " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
@@ -819,13 +833,13 @@ if has("unix") || has("mac")
 endif
 
 
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     "syntastic 
     let g:syntastic_error_symbol = "✗"
     let g:syntastic_warning_symbol = "⚠"
 endif
 
-if has("unix")
+if has("linux")
     "环境恢复
     " 设置环境保存项
     set sessionoptions="blank,buffers,globals,localoptions,tabpages,sesdir,folds,help,options,resize,winpos,winsize"
@@ -849,14 +863,14 @@ vmap <C-SPACE> <Plug>(wildfire-water)
 nnoremap <Leader>ud :GundoToggle<CR>
 
 
-"if has("unix")
+"if has("linux")
 "    "SingleCompiler
 "    nnoremap <Leader>sc :SCCompile<cr>
 "    nnoremap <Leader>sr :SCCompileRun<cr>
 "    let g:SingleCompile_showquickfixiferror = 1
 "endif
 
-"if has("unix")
+"if has("linux")
 "    "Dictionary
 "    function! Mydict()
 "        let expl=system('sdcv -n ' .
@@ -873,12 +887,12 @@ nnoremap <Leader>ud :GundoToggle<CR>
 "endif
 
 "Search system include files
-if has("unix") || has("mac")
+if has("linux") || has("mac")
     set path+=/usr/include/**
 endif
 
 "Deprecated
-"if has("unix")
+"if has("linux")
 "    "commandT  enconding issue
 "    let g:CommandTEncoding = 'UTF-8'
 "    nnoremap <silent> <leader>mr :CommandTMRU<CR>
@@ -900,12 +914,12 @@ endif
 "let g:ctrlp_map = '<F12>'
 "if has('win32') || has('win64')
 "    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
-"elseif has('unix')
+"elseif has('linux')
 "    if executable('ag')
 "        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
 "    endif
 "endif
-"if has('unix')
+"if has('linux')
 "    if has('python') || has('python3')
 "        "Vim8 windows platform when enable this, ctrlp can't find files.
 "        let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
@@ -919,7 +933,7 @@ endif
 "    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
 "    " ag is fast enough that CtrlP doesn't need to cache 
 "    let g:ctrlp_use_caching = 1 
-"    if has("unix")
+"    if has("linux")
 "        let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 "    endif
 "endif
@@ -973,7 +987,7 @@ nmap <C-m>Q :set cscopequickfix=<CR>
 "endif
 
 "Deprecated
-"if has("unix") || has('win32') || has('win64')
+"if has("linux") || has('win32') || has('win64')
 "    if !has('gui_running')
 "        "fzf
 "        nmap <leader>zz :FZF . <CR>
@@ -1013,7 +1027,7 @@ function! Replace(projectrange, confirm, wholeword, replace)
             execute 'Qargs | argdo %s/' . search . '/' . replace . '/' . flag . '| update'
         endif
     else
-        if has("unix") || has("mac")
+        if has("linux") || has("mac")
             execute bufnr('%') . 'bufdo %s/' . search . '/' . replace . '/' . flag . '| update'
         elseif has("win32") || has("win64")
             "Has some thing wrong, Ctrl-C and Esc replace string with null string.
@@ -1135,7 +1149,7 @@ let g:SignatureMap = {
             \ 'ListLocalMarkers'   :  "m?"
             \ }
 
-if has('unix')
+if has('linux')
     "vcscommand
     let g:VCSCommandMapPrefix = '<C-s>'
 endif
@@ -1248,7 +1262,6 @@ map <unique><silent> <F2> :DoxAuthor<cr>
 map <unique><silent> <F4> :Dox<cr>
 
 "Yggdroot/LeaderF
-let g:Lf_ShowDevIcons = 0
 let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
 "nnoremap <unique> :Leaderf<CR>
 "nnoremap <unique> :LeaderfBuffer<CR>
