@@ -31,7 +31,9 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'vim-scripts/tabula.vim'
 Plug 'morhetz/gruvbox'
 Plug 'hukl/Smyck-Color-Scheme'
+Plug 'dracula/vim'
 "Plug 'flazz/vim-colorschemes'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'adelarsq/vim-grimmjow'
 Plug 'lifepillar/vim-solarized8'
 Plug 'lifepillar/vim-wwdc16-theme'
@@ -58,6 +60,7 @@ Plug 'szw/vim-maximizer'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "multiple cursor
+"Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 "Plug 'terryma/vim-multiple-cursors'
 "Visualization of code indentation
 "Plug 'nathanaelkane/vim-indent-guides'
@@ -83,10 +86,6 @@ Plug 't9md/vim-choosewin'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mark sign
 Plug 'kshenoy/vim-signature'
-"Plug 'vim-scripts/BOOKMARKS--MARK-and-Highlight-Full-Lines'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File search tools
@@ -105,14 +104,6 @@ Plug 'kshenoy/vim-signature'
 Plug 'nelstrom/vim-qargs'
 if has('python') || has('python3')
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-    "Deprecated
-    "Plug 'FelikZ/ctrlp-py-matcher'
-endif
-if has("linux") || has("mac")
-    "Deprecated
-    "Plug 'wincent/command-t'
-    "terminal finder tool
-    "Plug 'junegunn/fzf'
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -144,7 +135,7 @@ Plug 'luochen1990/rainbow'
 if has("linux") || has("mac")
     "Auto-completion, real-time compilation
     Plug 'Valloric/YouCompleteMe'
-    "Plug 'rdnetto/YCM-Generator'
+    "Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
     "Grammar check
     Plug 'w0rp/ale'
     "Plug 'neomake/neomake'
@@ -188,6 +179,9 @@ Plug 'godlygeek/tabular'
 
 "quoting/parenthesizing tool
 Plug 'tpope/vim-surround'
+
+" Python
+"Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -381,7 +375,7 @@ nmap <Leader>w_ <C-W>_
 
 nmap <Leader>cd :pwd<CR>
 
-if has("gui_running") && has("linux")
+if has("gui_running") && has("unix")
     " 禁止光标闪烁
     "set gcr=a:block-blinkon0
     " " 禁止显示滚动条
@@ -617,13 +611,17 @@ let g:airline#extensions#ale#enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
+"---->clang ---> gcc
+let g:ale_cpp_cc_executable = 'gcc'
+let g:ale_c_cc_executable = 'gcc'
+
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 let g:ale_linters = {
 \   'c++': ['clang', 'gcc', 'cppcheck'],
-\   'c': ['clang', 'gcc', 'clangd', 'cppcheck'],
-\   'h': ['clang', 'gcc', 'clangd', 'cppcheck'],
-\   'python': ['pylint'],
+\   'c': ['clang', 'gcc', 'cppcheck'],
+\   'h': ['clang', 'gcc', 'cppcheck'],
+\   'python': ['flake8', 'pylint'],
 \}
 
 "let g:ale_sign_error = "\ue009\ue009"
@@ -673,7 +671,10 @@ function! ALE_custom_made()
 
     let g:ale_c_gcc_options = l:project_macros . l:system_headfile_dir . l:gcc_c_options
     let g:ale_cpp_gcc_options = l:project_macros . l:system_headfile_dir . l:gcc_cpp_options
+    let g:ale_cpp_cc_options = l:project_macros . l:system_headfile_dir . l:gcc_cpp_options
+
     let g:ale_c_clang_options = l:project_macros . l:system_headfile_dir . l:clang_c_options
+    let g:ale_c_cc_options = l:project_macros . l:system_headfile_dir . l:clang_c_options
 endfunction
 
 command! -nargs=0 ALECustom call ALE_custom_made()
@@ -745,7 +746,7 @@ if !has('gui_running')
     set termencoding=utf-8  
 endif
 "auto detect fileformats
-"if has('linux')
+"if has('unix')
 "    set fileformats=unix  
 "elseif has('win32') || has('win64')
 "    set fileformats=dos
@@ -797,7 +798,7 @@ nmap <Leader>sch :AS<CR>
 
 "Deprecated
 "ctrlsf.vim
-"if has('linux')
+"if has('unix')
 "    nnoremap <Leader>sf :CtrlSF<CR>
 "    let g:ctrlsf_ackprg = '/usr/bin/ag'
 "    let g:ctrlsf_extra_backend_args = {
@@ -808,7 +809,7 @@ nmap <Leader>sch :AS<CR>
 "Deprecated
 "Ag.vim
 "nnoremap <Leader>aa :Ag<CR>
-"if has("linux")
+"if has("unix")
 "    let g:ag_prg='ag --vimgrep --smart-case --ignore "cscope.*" --ignore "*.o"'
 "endif
 
@@ -839,7 +840,7 @@ if has("linux") || has("mac")
     let g:syntastic_warning_symbol = "⚠"
 endif
 
-if has("linux")
+if has("unix")
     "环境恢复
     " 设置环境保存项
     set sessionoptions="blank,buffers,globals,localoptions,tabpages,sesdir,folds,help,options,resize,winpos,winsize"
@@ -863,14 +864,14 @@ vmap <C-SPACE> <Plug>(wildfire-water)
 nnoremap <Leader>ud :GundoToggle<CR>
 
 
-"if has("linux")
+"if has("unix")
 "    "SingleCompiler
 "    nnoremap <Leader>sc :SCCompile<cr>
 "    nnoremap <Leader>sr :SCCompileRun<cr>
 "    let g:SingleCompile_showquickfixiferror = 1
 "endif
 
-"if has("linux")
+"if has("unix")
 "    "Dictionary
 "    function! Mydict()
 "        let expl=system('sdcv -n ' .
@@ -892,7 +893,7 @@ if has("linux") || has("mac")
 endif
 
 "Deprecated
-"if has("linux")
+"if has("unix")
 "    "commandT  enconding issue
 "    let g:CommandTEncoding = 'UTF-8'
 "    nnoremap <silent> <leader>mr :CommandTMRU<CR>
@@ -914,12 +915,12 @@ endif
 "let g:ctrlp_map = '<F12>'
 "if has('win32') || has('win64')
 "    let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
-"elseif has('linux')
+"elseif has('unix')
 "    if executable('ag')
 "        let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore "*.o"' 
 "    endif
 "endif
-"if has('linux')
+"if has('unix')
 "    if has('python') || has('python3')
 "        "Vim8 windows platform when enable this, ctrlp can't find files.
 "        let g:ctrlp_match_func = {'match': 'pymatcher#PyMatch'}
@@ -933,7 +934,7 @@ endif
 "    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore 
 "    " ag is fast enough that CtrlP doesn't need to cache 
 "    let g:ctrlp_use_caching = 1 
-"    if has("linux")
+"    if has("unix")
 "        let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 "    endif
 "endif
@@ -987,7 +988,7 @@ nmap <C-m>Q :set cscopequickfix=<CR>
 "endif
 
 "Deprecated
-"if has("linux") || has('win32') || has('win64')
+"if has("unix") || has('win32') || has('win64')
 "    if !has('gui_running')
 "        "fzf
 "        nmap <leader>zz :FZF . <CR>
@@ -1149,7 +1150,7 @@ let g:SignatureMap = {
             \ 'ListLocalMarkers'   :  "m?"
             \ }
 
-if has('linux')
+if has('unix')
     "vcscommand
     let g:VCSCommandMapPrefix = '<C-s>'
 endif
@@ -1262,13 +1263,21 @@ map <unique><silent> <F2> :DoxAuthor<cr>
 map <unique><silent> <F4> :Dox<cr>
 
 "Yggdroot/LeaderF
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+let g:Lf_ShowDevIcons = 0
 let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 "nnoremap <unique> :Leaderf<CR>
 "nnoremap <unique> :LeaderfBuffer<CR>
 "let g:Lf_ShortcutF = '<leader>gf' 
 "let g:Lf_ShortcutB = '<leader>gb'
 nnoremap <unique> <leader>gm :LeaderfMru<CR>
-let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_WindowHeight = 0.3
 let g:Lf_Gtagslabel = 'native-pygments'
 
@@ -1376,3 +1385,13 @@ let GtagsCscope_Auto_Load = 1
 
 "rainbow
 let g:rainbow_active = 0
+
+"jedi
+"let g:jedi#documentation_command = "<Leader>k"
+
+"pydoc
+"https://github.com/fs111/pydoc.vim.git
+let g:pydoc_cmd = 'python3 -m pydoc'
+if has("unix") || has("mac")
+    nmap <Leader>k :Pydoc <C-R>=expand("<cword>")<CR><CR>	
+endif
