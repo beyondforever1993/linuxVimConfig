@@ -1270,7 +1270,11 @@ let g:Lf_ShowDevIcons = 0
 let g:Lf_CommandMap = {'<C-]>': ['<C-Y>']}
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+if has('linux')
+    let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+elseif has('mac')
+    let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "Monaco" }
+endif
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
 "nnoremap <unique> :Leaderf<CR>
 "nnoremap <unique> :LeaderfBuffer<CR>
@@ -1394,4 +1398,38 @@ let g:rainbow_active = 0
 let g:pydoc_cmd = 'python3 -m pydoc'
 if has("unix") || has("mac")
     nmap <Leader>k :Pydoc <C-R>=expand("<cword>")<CR><CR>	
+endif
+
+"Kite
+if has('mac')
+    "By default Kite's completions will show up automatically as you type. You can opt out via:
+    let g:kite_auto_complete=1
+
+    "You can manually invoke the completions in insert mode with <C-X><C-U>. See :h i_CTRL-X_CTRL-U for details.
+    "You can disable Kite's completions altogether with this in your vimrc:
+    let g:kite_completions=1
+
+
+    "Kite's completions include snippets by default. To opt out of the snippets, add this to your vimrc:
+    let g:kite_snippets=1
+
+    "Normally you insert the currently selected completion option with <C-y>. If you'd like to use <Tab> instead / as well, add this to your vimrc:
+    let g:kite_tab_complete=1
+
+    "For any kind of completion you must set 'completopt' as follows:
+    set completeopt+=menuone
+    "For automatic completion, you also need either:
+    set completeopt+=noselect
+    set completeopt+=noinsert
+
+    "To see documentation in the preview window for each completion option, copy all the lines above into your vimrc and change the preview line to:
+    "set completeopt+=preview
+
+    "To have the preview window automatically closed once a completion has been inserted:
+    autocmd CompleteDone * if !pumvisible() | pclose | endif
+
+    "We also recommend:
+    set belloff+=ctrlg  " if vim beeps during completion
+
+    "let g:kite_documentation_continual=1
 endif
