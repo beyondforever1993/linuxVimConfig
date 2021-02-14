@@ -481,8 +481,8 @@ if has("gui_running")
     set background=dark
     colorscheme solarized8_flat
 else
-    set background=dark
-    colorscheme solarized8_flat
+    set background=light
+    colorscheme morning
 endif
 
 
