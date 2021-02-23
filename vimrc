@@ -1442,3 +1442,20 @@ if has('mac')
 
     "let g:kite_documentation_continual=1
 endif
+
+"floaterm
+let g:floaterm_keymap_new    = '<leader>to'
+let g:floaterm_keymap_prev   = '<leader>tp'
+let g:floaterm_keymap_next   = '<leader>tn'
+let g:floaterm_keymap_toggle = '<leader>tt'
+let g:floaterm_keymap_show   = '<leader>ts'
+let g:floaterm_keymap_kill   = '<leader>tk'
+
+"vim-interestingwords
+let g:interestingWordsDefaultMappings = 0
+nnoremap <silent> <F9> :call InterestingWords('n')<cr>
+vnoremap <silent> <F9> :call InterestingWords('v')<cr>
+nnoremap <silent> <F10> :call UncolorAllWords()<cr>
+nnoremap <silent> n :call WordNavigation(1)<cr>
+nnoremap <silent> N :call WordNavigation(0)<cr>
+let g:interestingWordsRandomiseColors = 1
