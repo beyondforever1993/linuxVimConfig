@@ -103,7 +103,7 @@ Plug 'kshenoy/vim-signature'
 "Plug 'Shougo/unite.vim'
 Plug 'nelstrom/vim-qargs'
 if has('python') || has('python3')
-    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,6 +182,15 @@ Plug 'tpope/vim-surround'
 
 " Python
 "Plug 'davidhalter/jedi-vim'
+
+"highlight
+Plug 'lfv89/vim-interestingwords'
+Plug 'itchyny/vim-cursorword'
+
+"markdown preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -430,26 +439,26 @@ endfunction
 
 "nmap n <Plug>MarkSearchOrCurNext
 "nmap N <Plug>MarkSearchOrCurPrev
-nmap <unique> <C-m>n :MarkClear<CR>
-nmap <unique> <C-m>m :Marks<CR>
-nmap <unique> <C-m>1 <Plug>MarkSearchGroup1Next
-nmap <unique> <C-x>1 <Plug>MarkSearchGroup1Prev
-nmap <unique> <C-m>2 <Plug>MarkSearchGroup2Next
-nmap <unique> <C-x>2 <Plug>MarkSearchGroup2Prev
-nmap <unique> <C-m>3 <Plug>MarkSearchGroup3Next
-nmap <unique> <C-x>3 <Plug>MarkSearchGroup3Prev
-nmap <unique> <C-m>4 <Plug>MarkSearchGroup4Next
-nmap <unique> <C-x>4 <Plug>MarkSearchGroup4Prev
-nmap <unique> <C-m>5 <Plug>MarkSearchGroup5Next
-nmap <unique> <C-x>5 <Plug>MarkSearchGroup5Prev
-nmap <unique> <C-m>6 <Plug>MarkSearchGroup6Next
-nmap <unique> <C-x>6 <Plug>MarkSearchGroup6Prev
-nmap <unique> <C-m>7 <Plug>MarkSearchGroup7Next
-nmap <unique> <C-x>7 <Plug>MarkSearchGroup7Prev
-nmap <unique> <C-m>8 <Plug>MarkSearchGroup8Next
-nmap <unique> <C-x>8 <Plug>MarkSearchGroup8Prev
-nmap <unique> <C-m>9 <Plug>MarkSearchGroup9Next
-nmap <unique> <C-x>9 <Plug>MarkSearchGroup9Prev
+"nmap <unique> <C-m>n :MarkClear<CR>
+"nmap <unique> <C-m>m :Marks<CR>
+"nmap <unique> <C-m>1 <Plug>MarkSearchGroup1Next
+"nmap <unique> <C-x>1 <Plug>MarkSearchGroup1Prev
+"nmap <unique> <C-m>2 <Plug>MarkSearchGroup2Next
+"nmap <unique> <C-x>2 <Plug>MarkSearchGroup2Prev
+"nmap <unique> <C-m>3 <Plug>MarkSearchGroup3Next
+"nmap <unique> <C-x>3 <Plug>MarkSearchGroup3Prev
+"nmap <unique> <C-m>4 <Plug>MarkSearchGroup4Next
+"nmap <unique> <C-x>4 <Plug>MarkSearchGroup4Prev
+"nmap <unique> <C-m>5 <Plug>MarkSearchGroup5Next
+"nmap <unique> <C-x>5 <Plug>MarkSearchGroup5Prev
+"nmap <unique> <C-m>6 <Plug>MarkSearchGroup6Next
+"nmap <unique> <C-x>6 <Plug>MarkSearchGroup6Prev
+"nmap <unique> <C-m>7 <Plug>MarkSearchGroup7Next
+"nmap <unique> <C-x>7 <Plug>MarkSearchGroup7Prev
+"nmap <unique> <C-m>8 <Plug>MarkSearchGroup8Next
+"nmap <unique> <C-x>8 <Plug>MarkSearchGroup8Prev
+"nmap <unique> <C-m>9 <Plug>MarkSearchGroup9Next
+"nmap <unique> <C-x>9 <Plug>MarkSearchGroup9Prev
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has("linux") || has("mac")
@@ -461,10 +470,6 @@ if has("linux") || has("mac")
     map <silent> <F11> :call ToggleFullscreen()<CR>
     " 启动 vim 时自动全屏
     "autocmd VimEnter * call ToggleFullscreen()
-    autocmd ColorScheme * so ~/.vim/plugin/mark.vim
-    autocmd ColorScheme * :call SourceMarkHighlight()
-elseif has("win32") || has("win64")
-    autocmd ColorScheme * so $HOME/vimfiles/plugin/mark.vim
 endif
 
 behave mswin
@@ -479,7 +484,7 @@ syntax enable
 if has("gui_running")
     "light or dark
     set background=dark
-    colorscheme solarized8_flat
+    colorscheme dracula
 else
     set background=light
     colorscheme morning
@@ -1356,8 +1361,12 @@ noremap <unique> <leader>rb :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer 
 "查看函数原型
 "nmap <Leader><Leader>d :psearch<cr>
 
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+let $GTAGSLABEL = 'native'
+if has('win32') || has('win64')
+    let $GTAGSCONF = 'D:\Program Files\Vim\3rdparty\glo665wb\share\gtags\gtags.conf'
+elseif has('linux') || has("mac")
+    let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+endif
 let $GTAGSLIBPATH = './:/usr/include'
 
 "quickfix 
