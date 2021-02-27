@@ -730,15 +730,6 @@ nmap <silent> <leader>hh :TagbarToggle<cr>
 let tagbar_left=1 
 let g:tagbar_sort = 0
 
-"Deprecated
-"UltiSnips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
 
 "Deprecated
 "Emmet-vim
@@ -1477,3 +1468,16 @@ endif
 set completeopt=menu,menuone,noselect
 " suppress annoy messages.
 set shortmess+=c
+
+"UltiSnips
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger = '<C-z>'
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+
+"iamcco/markdown-preview.nvim
+nmap <unique> <C-m>m <Plug>MarkdownPreview
+nmap <unique> <C-m>n <Plug>MarkdownPreviewStop
