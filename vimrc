@@ -392,12 +392,12 @@ if has("gui_running") && has("unix")
     " 禁止光标闪烁
     "set gcr=a:block-blinkon0
     " " 禁止显示滚动条
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
-    " " 禁止显示菜单和工具条
-    set guioptions-=m
+    "set guioptions-=l
+    "set guioptions-=L
+    "set guiopt"ions-=r
+    "set guioptions-=R
+    "" " 禁止显示菜单和工具条
+    "set guioptions-=m
     set guioptions-=T
 endif
 
@@ -730,6 +730,15 @@ nmap <silent> <leader>hh :TagbarToggle<cr>
 let tagbar_left=1 
 let g:tagbar_sort = 0
 
+"Deprecated
+"UltiSnips
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 "Deprecated
 "Emmet-vim
@@ -1469,15 +1478,12 @@ set completeopt=menu,menuone,noselect
 " suppress annoy messages.
 set shortmess+=c
 
-"UltiSnips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
+"ultisnips
 let g:UltiSnipsExpandTrigger = '<C-z>'
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
 
 "iamcco/markdown-preview.nvim
 nmap <unique> <C-m>m <Plug>MarkdownPreview
 nmap <unique> <C-m>n <Plug>MarkdownPreviewStop
+
+noremap <silent> <unique> <F8> :packadd termdebug<cr> :Termdebug<cr>
+noremap <silent> <unique> <F1> :help hotkey<cr>

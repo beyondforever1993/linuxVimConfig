@@ -1,0 +1,22 @@
+*hotkey.txt*	For Vim version 8.2.  Last change: 2021/03/19 
+		
+		快捷键
+					
+					*hotkey*
+
+FN                                      *hotkey-fn*
+	F1      :help hotkey<cr>
+	F2	:DoxAuthor<cr>
+	F4	:Dox<cr>
+	F5	:YcmForceCompileAndDiagnostics<cr>
+	F6	:YcmDiags<cr>
+	F7	:ALEDetail<cr>
+	F8	启动gdb
+	F9	高亮关键字
+	F10     取消所有关键字高亮
+	F11	最大化屏幕
+
+markdown~
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
