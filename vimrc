@@ -394,7 +394,7 @@ if has("gui_running") && has("unix")
     " " 禁止显示滚动条
     "set guioptions-=l
     "set guioptions-=L
-    "set guiopt"ions-=r
+    "set guioptions-=r
     "set guioptions-=R
     "" " 禁止显示菜单和工具条
     "set guioptions-=m
@@ -644,7 +644,7 @@ function! ALE_custom_made()
     let l:find_cmd_3 = " -not -path \'**/.svn/**\' "
     let l:find_cmd_4 = " -not -path \'**/objs/**\' "
 
-    let l:project_macros = ' -D__linux -DLIBUV_USED  '
+    let l:project_macros = '-DLIBUV_USED -D_FREERTOS -DCONFIG_HAVE_LIBFATFS -DCONFIG_HAVE_LWIP'
     "let l:system_headfile_dir = ' -I /usr/include '
     let l:system_headfile_dir = ''
     let l:gcc_c_options = '-Wall -Wextra -O2 -std=gnu99'
@@ -1197,6 +1197,13 @@ endfunction
 nmap <unique> <C-x>g :call CopyCurrentFilename(0)<CR>
 nmap <unique> <C-x>G :call CopyCurrentFilename(1)<CR>
 
+"Typora open current filename
+function! TyporaOpenFile()
+    call system("typora " . expand("%:p"))
+endfunction
+"typora preview
+nmap <unique> <C-m>m :call TyporaOpenFile()<CR>
+
 "vim7.4 patch 1770 support terminal true color
 if v:version >= 800 || has('patch-7.4.1770')
     set termguicolors
@@ -1462,7 +1469,7 @@ nnoremap <silent> B :call WordNavigation(0)<cr>
 let g:interestingWordsRandomiseColors = 1
 
 "set tags
-set tags=./.tags;,.tags
+set tags=./.tags;,.tags,/usr/include/.tags
 
 "vim-auto-popmenu
 " enable this plugin for filetypes, '*' for all files.
@@ -1481,9 +1488,14 @@ set shortmess+=c
 "ultisnips
 let g:UltiSnipsExpandTrigger = '<C-z>'
 
-"iamcco/markdown-preview.nvim
-nmap <unique> <C-m>m <Plug>MarkdownPreview
-nmap <unique> <C-m>n <Plug>MarkdownPreviewStop
+"markdown preview
+"nmap <unique> <C-m>m <Plug>MarkdownPreview
+"nmap <unique> <C-m>n <Plug>MarkdownPreviewStop
 
 noremap <silent> <unique> <F8> :packadd termdebug<cr> :Termdebug<cr>
 noremap <silent> <unique> <F1> :help hotkey<cr>
+
+" abbrev for leader gtags
+cabbrev sss Leaderf gtags -s 
+cabbrev ddd Leaderf gtags -d 
+cabbrev rrr Leaderf gtags -r 
