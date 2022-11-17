@@ -196,6 +196,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
 
+
+"multiple color highlight
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
 call plug#end()
 
 filetype plugin indent on    " required
@@ -1389,7 +1393,7 @@ noremap <unique> <C-y> :cclose<cr>
 noremap <unique> <leader>af :Autoformat<CR>
 
 "gtags
-let Gtags_Auto_Update = 1
+let Gtags_Auto_Update = 0
 let Gtags_No_Auto_Jump = 1
 let Gtags_Close_When_Single = 1
 
