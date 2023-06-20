@@ -120,6 +120,7 @@ Plug 'scrooloose/nerdcommenter'
 "Programming
 "function,variables,defitions indexing
 Plug 'majutsushi/tagbar'
+Plug 'liuchengxu/vista.vim'
 
 Plug 'skywind3000/asyncrun.vim'
 
@@ -196,10 +197,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'skywind3000/vim-auto-popmenu'
 Plug 'skywind3000/vim-dict'
 
-
 "multiple color highlight
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-mark'
+
 call plug#end()
 
 filetype plugin indent on    " required
@@ -396,12 +397,12 @@ if has("gui_running") && has("unix")
     " 禁止光标闪烁
     "set gcr=a:block-blinkon0
     " " 禁止显示滚动条
-    "set guioptions-=l
-    "set guioptions-=L
-    "set guioptions-=r
-    "set guioptions-=R
-    "" " 禁止显示菜单和工具条
-    "set guioptions-=m
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+    " " 禁止显示菜单和工具条
+    set guioptions-=m
     set guioptions-=T
 endif
 
@@ -648,7 +649,7 @@ function! ALE_custom_made()
     let l:find_cmd_3 = " -not -path \'**/.svn/**\' "
     let l:find_cmd_4 = " -not -path \'**/objs/**\' "
 
-    let l:project_macros = '-DLIBUV_USED -D_FREERTOS -DCONFIG_HAVE_LIBFATFS -DCONFIG_HAVE_LWIP'
+    let l:project_macros = ' -D__linux -DLIBUV_USED  '
     "let l:system_headfile_dir = ' -I /usr/include '
     let l:system_headfile_dir = ''
     let l:gcc_c_options = '-Wall -Wextra -O2 -std=gnu99'
@@ -733,6 +734,9 @@ nmap <silent> <leader>hh :TagbarToggle<cr>
 " 设置 tagbar 子窗口的位置出现在主编辑区的左边 
 let tagbar_left=1 
 let g:tagbar_sort = 0
+if has('win32') || has('win64')
+    let g:tagbar_ctags_bin='C:\Windows\System32\ctags.exe'
+endif
 
 "Deprecated
 "UltiSnips
@@ -771,7 +775,7 @@ if has("gui_running")
     if has('linux')
         set guifont=YaHei\ Consolas\ Hybrid\ 11.5
     elseif has('win32') || has('win64')
-        set guifont=YaHei_Consolas_Hybrid:h11.5
+        set guifont=Consolas:h12
     elseif has('mac')
         set guifont=Monaco:h14
     endif
@@ -1201,13 +1205,6 @@ endfunction
 nmap <unique> <C-x>g :call CopyCurrentFilename(0)<CR>
 nmap <unique> <C-x>G :call CopyCurrentFilename(1)<CR>
 
-"Typora open current filename
-function! TyporaOpenFile()
-    call system("typora " . expand("%:p"))
-endfunction
-"typora preview
-nmap <unique> <C-m>m :call TyporaOpenFile()<CR>
-
 "vim7.4 patch 1770 support terminal true color
 if v:version >= 800 || has('patch-7.4.1770')
     set termguicolors
@@ -1301,6 +1298,9 @@ let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_WindowHeight = 0.3
 let g:Lf_Gtagslabel = 'native-pygments'
 
+"For windows: romve gtags files
+noremap <unique> <leader>fc :SwordDeleteFolder C:\Users\genglei\.LfCache\gtags<CR>
+
 noremap <unique> <leader>fu :<C-U><C-R>=printf("Leaderf gtags --update")<CR><CR>
 noremap <unique> <leader>fr :<C-U><C-R>=printf("Leaderf gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
 noremap <unique> <leader>ff :<C-U><C-R>=printf("Leaderf gtags -r %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
@@ -1309,7 +1309,7 @@ noremap <unique> <leader>dd :<C-U><C-R>=printf("Leaderf gtags -d %s --auto-jump 
 noremap <unique> <leader>fs :<C-U><C-R>=printf("Leaderf gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
 noremap <unique> <leader>ss :<C-U><C-R>=printf("Leaderf gtags -s %s --auto-jump --result ctags-x", expand("<cword>"))<CR><CR>
 noremap <unique> <leader>aa :<C-U><C-R>=printf("Leaderf gtags --by-context --auto-jump --result ctags-x")<CR><CR>
-noremap <unique> <leader>fc :<C-U><C-R>=printf("Leaderf gtags --recall %s", "")<CR><CR>
+"noremap <unique> <leader>fc :<C-U><C-R>=printf("Leaderf gtags --recall %s", "")<CR><CR>
 noremap <unique> <leader>ft :<C-U><C-R>=printf("Leaderf gtags")<CR><CR>
 noremap <unique> <leader>fm :<C-U><C-R>=printf("LeaderfMruCwd")<CR><CR>
 noremap <unique> <leader>fb :<C-U><C-R>=printf("LeaderfBuffer")<CR><CR>
@@ -1374,7 +1374,7 @@ noremap <unique> <leader>rb :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer 
 
 let $GTAGSLABEL = 'native'
 if has('win32') || has('win64')
-    let $GTAGSCONF = 'D:\Program Files\Vim\3rdparty\glo665wb\share\gtags\gtags.conf'
+    let $GTAGSCONF = 'D:\Program Files (x86)\glo665wb\share\gtags\gtags.conf'
 elseif has('linux') || has("mac")
     let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 endif
