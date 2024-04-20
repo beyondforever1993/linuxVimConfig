@@ -1,0 +1,493 @@
+{
+    "workbench.editorAssociations": {
+        "*.xps": "default"
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.stickyScroll.enabled": true,
+    "window.zoomLevel": 2,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "vim.easymotion": true,
+    "vim.leader": ";",
+    "vim.sneak": true,
+    "vim.handleKeys": {
+
+
+        "<C-d>": true,
+        "<C-f>": true,
+        "<C-s>": false,
+        "<C-z>": false
+    },
+
+
+    // To improve performance"
+    "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+    },
+
+    "vim.operatorPendingModeKeyBindings": [
+
+    ],
+    "vim.digraphs": {
+
+    },
+    "vim.showMarksInGutter": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+         {
+      "before": ["<leader>", "c", "h"],
+      "commands": [
+        {
+          "command": "workbench.action.files.revealInOS",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "vscode.open",
+          "args": [
+            "${fileDirname}/${fileBasenameNoExtension}.h"
+          ]
+        },
+        {
+          "command": "workbench.action.splitEditorRight"
+        }
+      ],
+      "args": {
+        "override": true
+      }
+    } ,
+
+    ],
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+
+    "vim.normalModeKeyBindings": [
+       {
+          "before":["%"],
+          "commands": ["editor.action.jumpToBracket"],
+          "when": "editorTextFocus"
+    },
+       {
+          "before":["<leader>", "z", "z"],
+          "commands": ["editor.action.toggleWordWrap"]
+    },
+       {
+          "before":["<leader>", "t", "t"],
+          "commands": ["outline.focus"]
+      },
+       {
+          "before":["<leader>", "w", "o"],
+          "commands": [
+              "workbench.action.editorLayoutSingle",
+          ]
+      },
+       {
+          "before":["<leader>", "w", "s"],
+          "commands": [
+              "workbench.action.splitEditorDown",
+          ]
+      },
+      {
+         "before":["<leader>", "w", "v"],
+         "commands": [
+             "workbench.action.splitEditorRight",
+         ]
+      },
+      {
+         "before":["<leader>", "w", "c"],
+         "commands": [
+             "workbench.action.closeEditorsInGroup",
+         ]
+      },
+       {
+          "before":["<c-h>"],
+          "commands": [
+              "editor.action.startFindReplaceAction",
+          ],
+          "when": "editorFocus || editorIsOpen"
+      },
+       {
+          "before":["leader", "e"],
+          "commands": [
+              ":e!",
+          ]
+      },
+       {
+          "before":["leader", "q"],
+          "commands": [
+              ":q",
+          ]
+      },
+      {
+          "before": ["leader", "w", "w"],
+          "commands": [
+              ":w",
+          ]
+      },
+      {
+          "before": ["<C-x>", "g"],
+          "commands": [
+            "copyRelativeFilePath"
+          ],
+          "when": "!editorFocus"
+      },
+      {
+          "before": ["<C-x>", "g"],
+          "commands": [
+            "copyRelativeFilePath"
+          ],
+          "when": "editorFocus"
+      },
+      {
+          "before": ["<C-x>", "G"],
+          "commands": [
+              "copyFilePath"
+          ],
+          "when": "!editorFocus"
+      },
+      {
+          "before": ["<C-x>", "G"],
+          "commands": [
+              "copyFilePath"
+          ],
+          "when": "!editorFocus"
+      },
+      {
+          "before": ["<leader>", "d", "d"],
+          "commands": [
+              "editor.action.revealDefinition"
+          ],
+          "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
+      },
+      {
+          "before": ["<leader>", "r", "r"],
+          "commands": [
+              "editor.action.goToReferences"
+          ],
+          "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+      },
+      {
+          "before": ["<leader>", "a", "a"],
+          "commands": [
+              "references-view.findReferences"
+          ],
+          "when": "editorHasReferenceProvider"
+      },
+      {
+          "before": ["<leader>", "m", "m"],
+          "commands": [
+              "workbench.action.toggleMaximizeEditorGroup"
+          ],
+          "when": "maximizedEditorGroup || multipleEditorGroups"
+      },
+
+      {
+          "before": [
+              "<C-n>",
+              "a"
+          ],
+          "after": [
+              "\"",
+              "a",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "A"
+          ],
+          "after": [
+              "\"",
+              "A",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "b"
+          ],
+          "after": [
+              "\"",
+              "b",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "B"
+          ],
+          "after": [
+              "\"",
+              "B",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "c"
+          ],
+          "after": [
+              "\"",
+              "c",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "C"
+          ],
+          "after": [
+              "\"",
+              "C",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "d"
+          ],
+          "after": [
+              "\"",
+              "d",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "D"
+          ],
+          "after": [
+              "\"",
+              "D",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "e"
+          ],
+          "after": [
+              "\"",
+              "e",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "E"
+          ],
+          "after": [
+              "\"",
+              "E",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "f"
+          ],
+          "after": [
+              "\"",
+              "f",
+              "p",
+          ]
+      },
+      {
+          "before": [
+              "<C-n>",
+              "F"
+          ],
+          "after": [
+              "\"",
+              "F",
+              "p",
+          ]
+      },
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+       {
+          "before":["<leader>", "a", "f"],
+          "command": "editor.action.formatSelection",
+          "when": "editorHasDocumentSelectionFormattingProvider && editorTextFocus && !editorReadonly"
+        },
+        {
+            "before": [
+                "<C-x>",
+                "a"
+            ],
+            "after": [
+                "\"",
+                "a",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "A"
+            ],
+            "after": [
+                "\"",
+                "A",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "b"
+            ],
+            "after": [
+                "\"",
+                "b",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "B"
+            ],
+            "after": [
+                "\"",
+                "B",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "c"
+            ],
+            "after": [
+                "\"",
+                "c",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "C"
+            ],
+            "after": [
+                "\"",
+                "C",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "d",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "D"
+            ],
+            "after": [
+                "\"",
+                "D",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "e"
+            ],
+            "after": [
+                "\"",
+                "e",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "E"
+            ],
+            "after": [
+                "\"",
+                "E",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "f"
+            ],
+            "after": [
+                "\"",
+                "f",
+                "y",
+            ]
+        },
+        {
+            "before": [
+                "<C-x>",
+                "F"
+            ],
+            "after": [
+                "\"",
+                "F",
+                "y",
+            ]
+        },
+    ],
+    "git.suggestSmartCommit": false,
+    "vim.wrapscan": false,
+    "vim.hlsearch": true,
+
+    "window.commandCenter": false,
+    "clang-format.executable": "clang-format",
+    "clang-format.style": "file",
+    "clang-format.fallbackStyle": "Google",
+    "clang-format.assumeFilename": "C:/Users/genglei/_clang-format",
+    "gitlens.gitCommands.skipConfirmations": [
+        "fetch:command",
+        "stash-push:command",
+        "switch:menu"
+    ],
+    "diffEditor.hideUnchangedRegions.enabled": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "gitlens.mode.active": "review",
+    "gitlens.codeLens.scopes": [
+        "document",
+        "containers",
+        "blocks"
+    ],
+    "gitlens.views.repositories.includeWorkingTree": true,
+    "gitlens.graph.minimap.additionalTypes": [
+        "localBranches",
+        "stashes",
+        "remoteBranches",
+        "tags"
+    ],
+    "git.autofetch": true,
+    "git-graph.dialog.merge.noFastForward": false,
+    "git.path": "",
+    "gitlens.views.commitDetails.files.layout": "tree",
+    "scm.showChangesSummary": false
+}
